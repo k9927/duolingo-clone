@@ -2,7 +2,9 @@
 
 A full-stack clone of the Duolingo web app. You can work through a winding learning path, complete lessons made of six interactive exercise types, earn XP, keep a daily streak, lose and regain hearts, climb a weekly league and unlock achievements, all in Duolingo's playful UI.
 
-> Live demo: _add your deployed URL here_ · API docs: `<backend-url>/docs`
+- **Live demo:** https://duolingo-clone-chi-lovat.vercel.app
+- **API:** https://k9915.pythonanywhere.com (interactive docs at [/docs](https://k9915.pythonanywhere.com/docs))
+- **Source:** https://github.com/k9927/duolingo-clone
 
 > **Disclaimer:** an educational project built for a hiring assignment. It is not affiliated with or endorsed by Duolingo. The Duolingo name, logo, characters and artwork belong to Duolingo; they are loaded from Duolingo's own servers and are not included in this repository.
 
