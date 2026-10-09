@@ -1,0 +1,5 @@
+# Store text files with LF endings so builds behave the same on Windows and Linux (Render, Vercel).
+* text=auto eol=lf
+*.png binary
+*.jpg binary
+*.ico binary

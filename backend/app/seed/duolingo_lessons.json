@@ -1,0 +1,1177 @@
+{
+ "lessons": [
+  [
+   {
+    "type": "multiple_choice",
+    "prompt": "Which one of these is “cat”?",
+    "data": {
+     "variant": "image",
+     "new_word": true,
+     "choices": [
+      {
+       "id": "a",
+       "text": "mamá",
+       "image": "https://d2pur3iezf4d1j.cloudfront.net/images/663d3893596e4841ad991ef1dc02ddbc",
+       "tts": "https://d1vq87e9lcf771.cloudfront.net/miguel/fc1de63db007df54a806256d6bfbbff3"
+      },
+      {
+       "id": "b",
+       "text": "gato",
+       "image": "https://d2pur3iezf4d1j.cloudfront.net/images/9aa862ebf2f8636383e54ce23d340db9",
+       "tts": "https://d1vq87e9lcf771.cloudfront.net/penelope/111ca1a6333c1d11a24a66ad40da3215"
+      },
+      {
+       "id": "c",
+       "text": "papá",
+       "image": "https://d2pur3iezf4d1j.cloudfront.net/images/bcabd1e0ad46cf5e8ee8339f6c5579d1",
+       "tts": "https://d1vq87e9lcf771.cloudfront.net/penelope/87ad1997e4b7722870f7f647a1d3262e"
+      }
+     ]
+    },
+    "solution": {
+     "choice_id": "b"
+    }
+   },
+   {
+    "type": "multiple_choice",
+    "prompt": "Which one of these is “dog”?",
+    "data": {
+     "variant": "image",
+     "new_word": true,
+     "choices": [
+      {
+       "id": "a",
+       "text": "papá",
+       "image": "https://d2pur3iezf4d1j.cloudfront.net/images/bcabd1e0ad46cf5e8ee8339f6c5579d1",
+       "tts": "https://d1vq87e9lcf771.cloudfront.net/miguel/028becd73d71b9549245d9b02dd8771e"
+      },
+      {
+       "id": "b",
+       "text": "perro",
+       "image": "https://d2pur3iezf4d1j.cloudfront.net/images/d8adb479aed80e6420f566afea110eb1",
+       "tts": "https://d1vq87e9lcf771.cloudfront.net/penelope/a9489cff87e165a41f64eed7a85afd1f"
+      },
+      {
+       "id": "c",
+       "text": "mamá",
+       "image": "https://d2pur3iezf4d1j.cloudfront.net/images/663d3893596e4841ad991ef1dc02ddbc",
+       "tts": "https://d1vq87e9lcf771.cloudfront.net/penelope/e8319898c5713fd43aa69b5d9b48853b"
+      }
+     ]
+    },
+    "solution": {
+     "choice_id": "b"
+    }
+   },
+   {
+    "type": "multiple_choice",
+    "prompt": "Which one of these is “water”?",
+    "data": {
+     "variant": "image",
+     "new_word": true,
+     "choices": [
+      {
+       "id": "a",
+       "text": "papá",
+       "image": "https://d2pur3iezf4d1j.cloudfront.net/images/bcabd1e0ad46cf5e8ee8339f6c5579d1",
+       "tts": "https://d1vq87e9lcf771.cloudfront.net/penelope/87ad1997e4b7722870f7f647a1d3262e"
+      },
+      {
+       "id": "b",
+       "text": "agua",
+       "image": "https://d2pur3iezf4d1j.cloudfront.net/images/7afea32bcf0e8c6f9d446ad4aad416be",
+       "tts": "https://d1vq87e9lcf771.cloudfront.net/miguel/db125f511a83d46fbd6a9c88d6195664"
+      },
+      {
+       "id": "c",
+       "text": "gato",
+       "image": "https://d2pur3iezf4d1j.cloudfront.net/images/9aa862ebf2f8636383e54ce23d340db9",
+       "tts": "https://d1vq87e9lcf771.cloudfront.net/miguel/23df34204a8f580aedd8d72ed39b5418"
+      }
+     ]
+    },
+    "solution": {
+     "choice_id": "b"
+    }
+   },
+   {
+    "type": "multiple_choice",
+    "prompt": "Which one of these is “milk”?",
+    "data": {
+     "variant": "image",
+     "new_word": true,
+     "choices": [
+      {
+       "id": "a",
+       "text": "leche",
+       "image": "https://d2pur3iezf4d1j.cloudfront.net/images/645fa42dcea02c7e2970a1285e321562",
+       "tts": "https://d1vq87e9lcf771.cloudfront.net/miguel/6c7ad12eba3d8f69d6081786c7ba09df"
+      },
+      {
+       "id": "b",
+       "text": "perro",
+       "image": "https://d2pur3iezf4d1j.cloudfront.net/images/d8adb479aed80e6420f566afea110eb1",
+       "tts": "https://d1vq87e9lcf771.cloudfront.net/miguel/fd92fdb22bdf785b786e178c7008bd59"
+      },
+      {
+       "id": "c",
+       "text": "gato",
+       "image": "https://d2pur3iezf4d1j.cloudfront.net/images/9aa862ebf2f8636383e54ce23d340db9",
+       "tts": "https://d1vq87e9lcf771.cloudfront.net/penelope/111ca1a6333c1d11a24a66ad40da3215"
+      }
+     ]
+    },
+    "solution": {
+     "choice_id": "a"
+    }
+   },
+   {
+    "type": "match_pairs",
+    "prompt": "Select the matching pairs",
+    "data": {
+     "pairs": [
+      {
+       "id": "p1",
+       "left": "gato",
+       "right": "cat",
+       "tts": "https://d1vq87e9lcf771.cloudfront.net/penelope/111ca1a6333c1d11a24a66ad40da3215"
+      },
+      {
+       "id": "p2",
+       "left": "leche",
+       "right": "milk",
+       "tts": "https://d1vq87e9lcf771.cloudfront.net/miguel/6c7ad12eba3d8f69d6081786c7ba09df"
+      },
+      {
+       "id": "p3",
+       "left": "agua",
+       "right": "water",
+       "tts": "https://d1vq87e9lcf771.cloudfront.net/miguel/db125f511a83d46fbd6a9c88d6195664"
+      },
+      {
+       "id": "p4",
+       "left": "perro",
+       "right": "dog",
+       "tts": "https://d1vq87e9lcf771.cloudfront.net/penelope/a9489cff87e165a41f64eed7a85afd1f"
+      },
+      {
+       "id": "p5",
+       "left": "mamá",
+       "right": "mom",
+       "tts": "https://d1vq87e9lcf771.cloudfront.net/miguel/fc1de63db007df54a806256d6bfbbff3"
+      }
+     ]
+    },
+    "solution": {}
+   },
+   {
+    "type": "multiple_choice",
+    "prompt": "Select the correct meaning",
+    "data": {
+     "variant": "text",
+     "sentence": "dog",
+     "character": "https://d2pur3iezf4d1j.cloudfront.net/images/0f284113af41f7f7296263183701a13b",
+     "new_word": false,
+     "choices": [
+      {
+       "id": "a",
+       "text": "agua",
+       "tts": "https://d1vq87e9lcf771.cloudfront.net/falstaffes/78bc690229f1838b1f957355b1403448"
+      },
+      {
+       "id": "b",
+       "text": "perro",
+       "tts": "https://d1vq87e9lcf771.cloudfront.net/falstaffes/eeb2b6c0340d75ca727f8ed23f5c240a"
+      },
+      {
+       "id": "c",
+       "text": "gato",
+       "tts": "https://d1vq87e9lcf771.cloudfront.net/falstaffes/b0a413f064703728bb80e82bf73b60c4"
+      }
+     ]
+    },
+    "solution": {
+     "choice_id": "b"
+    }
+   },
+   {
+    "type": "multiple_choice",
+    "prompt": "Select the correct meaning",
+    "data": {
+     "variant": "text",
+     "sentence": "water",
+     "character": "https://d2pur3iezf4d1j.cloudfront.net/images/85c5ecb885f7073a3aebeb775946e329",
+     "new_word": false,
+     "choices": [
+      {
+       "id": "a",
+       "text": "agua",
+       "tts": "https://d1vq87e9lcf771.cloudfront.net/lines/2d010c6ab525111921c0f2c1f2f779eb"
+      },
+      {
+       "id": "b",
+       "text": "perro",
+       "tts": "https://d1vq87e9lcf771.cloudfront.net/lines/94b9f2458b23c989784c3cc6c6270bc7"
+      },
+      {
+       "id": "c",
+       "text": "leche",
+       "tts": "https://d1vq87e9lcf771.cloudfront.net/lines/747bc4adb2fb30680855a8dc6657ed43"
+      }
+     ]
+    },
+    "solution": {
+     "choice_id": "a"
+    }
+   },
+   {
+    "type": "multiple_choice",
+    "prompt": "Which one of these is “mom”?",
+    "data": {
+     "variant": "image",
+     "new_word": true,
+     "choices": [
+      {
+       "id": "a",
+       "text": "agua",
+       "image": "https://d2pur3iezf4d1j.cloudfront.net/images/7afea32bcf0e8c6f9d446ad4aad416be",
+       "tts": "https://d1vq87e9lcf771.cloudfront.net/penelope/2426e202da4d1488ed7b9d6d5be2f5b3"
+      },
+      {
+       "id": "b",
+       "text": "perro",
+       "image": "https://d2pur3iezf4d1j.cloudfront.net/images/d8adb479aed80e6420f566afea110eb1",
+       "tts": "https://d1vq87e9lcf771.cloudfront.net/penelope/a9489cff87e165a41f64eed7a85afd1f"
+      },
+      {
+       "id": "c",
+       "text": "mamá",
+       "image": "https://d2pur3iezf4d1j.cloudfront.net/images/663d3893596e4841ad991ef1dc02ddbc",
+       "tts": "https://d1vq87e9lcf771.cloudfront.net/miguel/fc1de63db007df54a806256d6bfbbff3"
+      }
+     ]
+    },
+    "solution": {
+     "choice_id": "c"
+    }
+   },
+   {
+    "type": "multiple_choice",
+    "prompt": "Which one of these is “dad”?",
+    "data": {
+     "variant": "image",
+     "new_word": true,
+     "choices": [
+      {
+       "id": "a",
+       "text": "agua",
+       "image": "https://d2pur3iezf4d1j.cloudfront.net/images/7afea32bcf0e8c6f9d446ad4aad416be",
+       "tts": "https://d1vq87e9lcf771.cloudfront.net/miguel/db125f511a83d46fbd6a9c88d6195664"
+      },
+      {
+       "id": "b",
+       "text": "leche",
+       "image": "https://d2pur3iezf4d1j.cloudfront.net/images/645fa42dcea02c7e2970a1285e321562",
+       "tts": "https://d1vq87e9lcf771.cloudfront.net/penelope/167c49869663d15f070858f4ffee801c"
+      },
+      {
+       "id": "c",
+       "text": "papá",
+       "image": "https://d2pur3iezf4d1j.cloudfront.net/images/bcabd1e0ad46cf5e8ee8339f6c5579d1",
+       "tts": "https://d1vq87e9lcf771.cloudfront.net/penelope/87ad1997e4b7722870f7f647a1d3262e"
+      }
+     ]
+    },
+    "solution": {
+     "choice_id": "c"
+    }
+   },
+   {
+    "type": "multiple_choice",
+    "prompt": "Select the correct meaning",
+    "data": {
+     "variant": "text",
+     "sentence": "dad",
+     "character": "https://d2pur3iezf4d1j.cloudfront.net/images/85c5ecb885f7073a3aebeb775946e329",
+     "new_word": false,
+     "choices": [
+      {
+       "id": "a",
+       "text": "mamá",
+       "tts": "https://d1vq87e9lcf771.cloudfront.net/lines/ea6f9be7a881400227c00545e27dfdea"
+      },
+      {
+       "id": "b",
+       "text": "leche",
+       "tts": "https://d1vq87e9lcf771.cloudfront.net/lines/747bc4adb2fb30680855a8dc6657ed43"
+      },
+      {
+       "id": "c",
+       "text": "papá",
+       "tts": "https://d1vq87e9lcf771.cloudfront.net/lines/78746dad87ec8e88c13cbad684cd3c9d"
+      }
+     ]
+    },
+    "solution": {
+     "choice_id": "c"
+    }
+   },
+   {
+    "type": "multiple_choice",
+    "prompt": "Select the correct meaning",
+    "data": {
+     "variant": "text",
+     "sentence": "cat",
+     "character": "https://d2pur3iezf4d1j.cloudfront.net/images/50af330449fbbaf257fc9868c4321586",
+     "new_word": false,
+     "choices": [
+      {
+       "id": "a",
+       "text": "perro",
+       "tts": "https://d1vq87e9lcf771.cloudfront.net/beaes/5801f1b9aa135ebea7bf30429387da2e"
+      },
+      {
+       "id": "b",
+       "text": "gato",
+       "tts": "https://d1vq87e9lcf771.cloudfront.net/beaes/388e5f77288aeae50e57915b81ba6079"
+      },
+      {
+       "id": "c",
+       "text": "agua",
+       "tts": "https://d1vq87e9lcf771.cloudfront.net/beaes/c2954eaf9313df247626e07ec8d352ee"
+      }
+     ]
+    },
+    "solution": {
+     "choice_id": "b"
+    }
+   },
+   {
+    "type": "match_pairs",
+    "prompt": "Select the matching pairs",
+    "data": {
+     "pairs": [
+      {
+       "id": "p1",
+       "left": "agua",
+       "right": "water",
+       "tts": "https://d1vq87e9lcf771.cloudfront.net/miguel/db125f511a83d46fbd6a9c88d6195664"
+      },
+      {
+       "id": "p2",
+       "left": "gato",
+       "right": "cat",
+       "tts": "https://d1vq87e9lcf771.cloudfront.net/penelope/111ca1a6333c1d11a24a66ad40da3215"
+      },
+      {
+       "id": "p3",
+       "left": "perro",
+       "right": "dog",
+       "tts": "https://d1vq87e9lcf771.cloudfront.net/penelope/a9489cff87e165a41f64eed7a85afd1f"
+      },
+      {
+       "id": "p4",
+       "left": "leche",
+       "right": "milk",
+       "tts": "https://d1vq87e9lcf771.cloudfront.net/miguel/6c7ad12eba3d8f69d6081786c7ba09df"
+      },
+      {
+       "id": "p5",
+       "left": "mamá",
+       "right": "mom",
+       "tts": "https://d1vq87e9lcf771.cloudfront.net/miguel/fc1de63db007df54a806256d6bfbbff3"
+      }
+     ]
+    },
+    "solution": {}
+   }
+  ],
+  [
+   {
+    "type": "multiple_choice",
+    "prompt": "Which one of these is “book”?",
+    "data": {
+     "variant": "image",
+     "new_word": true,
+     "choices": [
+      {
+       "id": "a",
+       "text": "libro",
+       "image": "https://d2pur3iezf4d1j.cloudfront.net/images/b5406351772e6898e0999b4028cbf799",
+       "tts": "https://d1vq87e9lcf771.cloudfront.net/penelope/018cb70b0eb324b42364f3be7bc04caf"
+      },
+      {
+       "id": "b",
+       "text": "mamá",
+       "image": "https://d2pur3iezf4d1j.cloudfront.net/images/663d3893596e4841ad991ef1dc02ddbc",
+       "tts": "https://d1vq87e9lcf771.cloudfront.net/penelope/e8319898c5713fd43aa69b5d9b48853b"
+      },
+      {
+       "id": "c",
+       "text": "agua",
+       "image": "https://d2pur3iezf4d1j.cloudfront.net/images/7afea32bcf0e8c6f9d446ad4aad416be",
+       "tts": "https://d1vq87e9lcf771.cloudfront.net/penelope/2426e202da4d1488ed7b9d6d5be2f5b3"
+      }
+     ]
+    },
+    "solution": {
+     "choice_id": "a"
+    }
+   },
+   {
+    "type": "multiple_choice",
+    "prompt": "Which one of these is “house”?",
+    "data": {
+     "variant": "image",
+     "new_word": true,
+     "choices": [
+      {
+       "id": "a",
+       "text": "perro",
+       "image": "https://d2pur3iezf4d1j.cloudfront.net/images/d8adb479aed80e6420f566afea110eb1",
+       "tts": "https://d1vq87e9lcf771.cloudfront.net/miguel/fd92fdb22bdf785b786e178c7008bd59"
+      },
+      {
+       "id": "b",
+       "text": "libro",
+       "image": "https://d2pur3iezf4d1j.cloudfront.net/images/b5406351772e6898e0999b4028cbf799",
+       "tts": "https://d1vq87e9lcf771.cloudfront.net/penelope/018cb70b0eb324b42364f3be7bc04caf"
+      },
+      {
+       "id": "c",
+       "text": "casa",
+       "image": "https://d2pur3iezf4d1j.cloudfront.net/images/6d966ea1c0962c0b81bf2f1f82fc18fd",
+       "tts": "https://d1vq87e9lcf771.cloudfront.net/penelope/18b379f8bbc54f7ca61e62c3fb7d707f"
+      }
+     ]
+    },
+    "solution": {
+     "choice_id": "c"
+    }
+   },
+   {
+    "type": "multiple_choice",
+    "prompt": "Which one of these is “suitcase”?",
+    "data": {
+     "variant": "image",
+     "new_word": true,
+     "choices": [
+      {
+       "id": "a",
+       "text": "libro",
+       "image": "https://d2pur3iezf4d1j.cloudfront.net/images/b5406351772e6898e0999b4028cbf799",
+       "tts": "https://d1vq87e9lcf771.cloudfront.net/penelope/018cb70b0eb324b42364f3be7bc04caf"
+      },
+      {
+       "id": "b",
+       "text": "casa",
+       "image": "https://d2pur3iezf4d1j.cloudfront.net/images/6d966ea1c0962c0b81bf2f1f82fc18fd",
+       "tts": "https://d1vq87e9lcf771.cloudfront.net/penelope/18b379f8bbc54f7ca61e62c3fb7d707f"
+      },
+      {
+       "id": "c",
+       "text": "maleta",
+       "image": "https://d2pur3iezf4d1j.cloudfront.net/images/a6c7cbf5ac78d674ecde39a066508ee2",
+       "tts": "https://d1vq87e9lcf771.cloudfront.net/penelope/f5245b943dc5014a35cbb6c6209b253a"
+      }
+     ]
+    },
+    "solution": {
+     "choice_id": "c"
+    }
+   },
+   {
+    "type": "match_pairs",
+    "prompt": "Select the matching pairs",
+    "data": {
+     "pairs": [
+      {
+       "id": "p1",
+       "left": "libro",
+       "right": "book",
+       "tts": "https://d1vq87e9lcf771.cloudfront.net/penelope/018cb70b0eb324b42364f3be7bc04caf"
+      },
+      {
+       "id": "p2",
+       "left": "papá",
+       "right": "dad",
+       "tts": "https://d1vq87e9lcf771.cloudfront.net/miguel/028becd73d71b9549245d9b02dd8771e"
+      },
+      {
+       "id": "p3",
+       "left": "casa",
+       "right": "house",
+       "tts": "https://d1vq87e9lcf771.cloudfront.net/penelope/18b379f8bbc54f7ca61e62c3fb7d707f"
+      },
+      {
+       "id": "p4",
+       "left": "perro",
+       "right": "dog",
+       "tts": "https://d1vq87e9lcf771.cloudfront.net/miguel/fd92fdb22bdf785b786e178c7008bd59"
+      },
+      {
+       "id": "p5",
+       "left": "mamá",
+       "right": "mom",
+       "tts": "https://d1vq87e9lcf771.cloudfront.net/miguel/fc1de63db007df54a806256d6bfbbff3"
+      }
+     ]
+    },
+    "solution": {}
+   },
+   {
+    "type": "match_pairs",
+    "prompt": "Select the matching pairs",
+    "data": {
+     "pairs": [
+      {
+       "id": "p1",
+       "left": "gato",
+       "right": "cat",
+       "tts": "https://d1vq87e9lcf771.cloudfront.net/penelope/111ca1a6333c1d11a24a66ad40da3215"
+      },
+      {
+       "id": "p2",
+       "left": "maleta",
+       "right": "suitcase",
+       "tts": "https://d1vq87e9lcf771.cloudfront.net/penelope/f5245b943dc5014a35cbb6c6209b253a"
+      },
+      {
+       "id": "p3",
+       "left": "agua",
+       "right": "water",
+       "tts": "https://d1vq87e9lcf771.cloudfront.net/penelope/2426e202da4d1488ed7b9d6d5be2f5b3"
+      },
+      {
+       "id": "p4",
+       "left": "leche",
+       "right": "milk",
+       "tts": "https://d1vq87e9lcf771.cloudfront.net/miguel/6c7ad12eba3d8f69d6081786c7ba09df"
+      },
+      {
+       "id": "p5",
+       "left": "casa",
+       "right": "house",
+       "tts": "https://d1vq87e9lcf771.cloudfront.net/penelope/18b379f8bbc54f7ca61e62c3fb7d707f"
+      }
+     ]
+    },
+    "solution": {}
+   },
+   {
+    "prompt": "Write this in English",
+    "type": "translate",
+    "data": {
+     "sentence": "mi maleta",
+     "sentence_lang": "es",
+     "tts": "https://d1vq87e9lcf771.cloudfront.net/oscares/7c58512d34b070e05204069e7df74511",
+     "character": "https://d2pur3iezf4d1j.cloudfront.net/images/f4639160abfb44c54829ebeb62c0542d",
+     "words": [
+      "my",
+      "suitcase",
+      "cat",
+      "house"
+     ]
+    },
+    "solution": {
+     "accepted": [
+      "my suitcase"
+     ]
+    }
+   },
+   {
+    "type": "multiple_choice",
+    "prompt": "Select the correct meaning",
+    "data": {
+     "variant": "text",
+     "sentence": "suitcase",
+     "character": "https://d2pur3iezf4d1j.cloudfront.net/images/81ca92172d70599306b16bcb87799195",
+     "new_word": false,
+     "choices": [
+      {
+       "id": "a",
+       "text": "casa",
+       "tts": "https://d1vq87e9lcf771.cloudfront.net/lilyes2/230835c5308362aec52a9ed74abe1765"
+      },
+      {
+       "id": "b",
+       "text": "libro",
+       "tts": "https://d1vq87e9lcf771.cloudfront.net/lilyes2/2a17851f0a4b109f2b4c2ec46e62b0e0"
+      },
+      {
+       "id": "c",
+       "text": "maleta",
+       "tts": "https://d1vq87e9lcf771.cloudfront.net/lilyes2/e37d80f4360b2c17e9043d10167e22fa"
+      }
+     ]
+    },
+    "solution": {
+     "choice_id": "c"
+    }
+   },
+   {
+    "prompt": "Write this in English",
+    "type": "translate",
+    "data": {
+     "sentence": "mi casa",
+     "sentence_lang": "es",
+     "tts": "https://d1vq87e9lcf771.cloudfront.net/beaes/66f3b89feef3be5aa46081646dbd4d31",
+     "character": "https://d2pur3iezf4d1j.cloudfront.net/images/50af330449fbbaf257fc9868c4321586",
+     "words": [
+      "my",
+      "house",
+      "dog",
+      "book"
+     ]
+    },
+    "solution": {
+     "accepted": [
+      "my house"
+     ]
+    }
+   },
+   {
+    "type": "multiple_choice",
+    "prompt": "Select the correct meaning",
+    "data": {
+     "variant": "text",
+     "sentence": "house",
+     "character": "https://d2pur3iezf4d1j.cloudfront.net/images/85c5ecb885f7073a3aebeb775946e329",
+     "new_word": false,
+     "choices": [
+      {
+       "id": "a",
+       "text": "libro",
+       "tts": "https://d1vq87e9lcf771.cloudfront.net/lines/b3f652cae3123e0198fba897f5cb782d"
+      },
+      {
+       "id": "b",
+       "text": "maleta",
+       "tts": "https://d1vq87e9lcf771.cloudfront.net/lines/07234b206a38a25293945451fd0339c3"
+      },
+      {
+       "id": "c",
+       "text": "casa",
+       "tts": "https://d1vq87e9lcf771.cloudfront.net/lines/a3f1994682dd38f917a01019c074a4e5"
+      }
+     ]
+    },
+    "solution": {
+     "choice_id": "c"
+    }
+   },
+   {
+    "prompt": "Write this in English",
+    "type": "translate",
+    "data": {
+     "sentence": "mi libro",
+     "sentence_lang": "es",
+     "tts": "https://d1vq87e9lcf771.cloudfront.net/lucyes/a547e0d456e5831a7f650a41f0eeb4db",
+     "character": "https://d2pur3iezf4d1j.cloudfront.net/images/ad178aebb8dfd890ab602527440e685c",
+     "words": [
+      "my",
+      "book",
+      "dog",
+      "cat"
+     ]
+    },
+    "solution": {
+     "accepted": [
+      "my book"
+     ]
+    }
+   },
+   {
+    "type": "multiple_choice",
+    "prompt": "Select the correct meaning",
+    "data": {
+     "variant": "text",
+     "sentence": "book",
+     "character": "https://d2pur3iezf4d1j.cloudfront.net/images/50af330449fbbaf257fc9868c4321586",
+     "new_word": false,
+     "choices": [
+      {
+       "id": "a",
+       "text": "perro",
+       "tts": "https://d1vq87e9lcf771.cloudfront.net/beaes/5801f1b9aa135ebea7bf30429387da2e"
+      },
+      {
+       "id": "b",
+       "text": "libro",
+       "tts": "https://d1vq87e9lcf771.cloudfront.net/beaes/343ffe6f0f81c32860e8130ac46c3ce0"
+      },
+      {
+       "id": "c",
+       "text": "agua",
+       "tts": "https://d1vq87e9lcf771.cloudfront.net/beaes/c2954eaf9313df247626e07ec8d352ee"
+      }
+     ]
+    },
+    "solution": {
+     "choice_id": "b"
+    }
+   },
+   {
+    "type": "match_pairs",
+    "prompt": "Select the matching pairs",
+    "data": {
+     "pairs": [
+      {
+       "id": "p1",
+       "left": "mi papá",
+       "right": "my dad",
+       "tts": "https://d1vq87e9lcf771.cloudfront.net/miguel/02dcaa7f207a1cc04c208ae79aacd770"
+      },
+      {
+       "id": "p2",
+       "left": "mi perro",
+       "right": "my dog",
+       "tts": "https://d1vq87e9lcf771.cloudfront.net/miguel/1be270eee8daf62271e2a500f4682373"
+      },
+      {
+       "id": "p3",
+       "left": "mi casa",
+       "right": "my house",
+       "tts": "https://d1vq87e9lcf771.cloudfront.net/penelope/2615463c0c53207e810a42fa2e31c6b4"
+      },
+      {
+       "id": "p4",
+       "left": "mi mamá",
+       "right": "my mom",
+       "tts": "https://d1vq87e9lcf771.cloudfront.net/miguel/23c11f21c5cb4b59d0903d094cf9836d"
+      },
+      {
+       "id": "p5",
+       "left": "mi gato",
+       "right": "my cat",
+       "tts": "https://d1vq87e9lcf771.cloudfront.net/miguel/d8989431d503817fedd34ad3df010a87"
+      }
+     ]
+    },
+    "solution": {}
+   }
+  ],
+  [
+   {
+    "type": "multiple_choice",
+    "prompt": "Which one of these is “green”?",
+    "data": {
+     "variant": "image",
+     "new_word": true,
+     "choices": [
+      {
+       "id": "a",
+       "text": "verde",
+       "image": "https://d2pur3iezf4d1j.cloudfront.net/images/c1fba0f6343b3c5392b4b556b40274fa",
+       "tts": "https://d1vq87e9lcf771.cloudfront.net/penelope/df18f70671bb059542074b38e4b4af3d"
+      },
+      {
+       "id": "b",
+       "text": "libro",
+       "image": "https://d2pur3iezf4d1j.cloudfront.net/images/b5406351772e6898e0999b4028cbf799",
+       "tts": "https://d1vq87e9lcf771.cloudfront.net/penelope/018cb70b0eb324b42364f3be7bc04caf"
+      },
+      {
+       "id": "c",
+       "text": "mamá",
+       "image": "https://d2pur3iezf4d1j.cloudfront.net/images/663d3893596e4841ad991ef1dc02ddbc",
+       "tts": "https://d1vq87e9lcf771.cloudfront.net/penelope/e8319898c5713fd43aa69b5d9b48853b"
+      }
+     ]
+    },
+    "solution": {
+     "choice_id": "a"
+    }
+   },
+   {
+    "type": "multiple_choice",
+    "prompt": "Which one of these is “blue”?",
+    "data": {
+     "variant": "image",
+     "new_word": true,
+     "choices": [
+      {
+       "id": "a",
+       "text": "papá",
+       "image": "https://d2pur3iezf4d1j.cloudfront.net/images/bcabd1e0ad46cf5e8ee8339f6c5579d1",
+       "tts": "https://d1vq87e9lcf771.cloudfront.net/miguel/028becd73d71b9549245d9b02dd8771e"
+      },
+      {
+       "id": "b",
+       "text": "perro",
+       "image": "https://d2pur3iezf4d1j.cloudfront.net/images/d8adb479aed80e6420f566afea110eb1",
+       "tts": "https://d1vq87e9lcf771.cloudfront.net/miguel/fd92fdb22bdf785b786e178c7008bd59"
+      },
+      {
+       "id": "c",
+       "text": "azul",
+       "image": "https://d2pur3iezf4d1j.cloudfront.net/images/fc102c2c6544341f2b61659af8acb4c2",
+       "tts": "https://d1vq87e9lcf771.cloudfront.net/miguel/af1cd7b4c949c72909d493270ad7f58a"
+      }
+     ]
+    },
+    "solution": {
+     "choice_id": "c"
+    }
+   },
+   {
+    "prompt": "Write this in English",
+    "type": "translate",
+    "data": {
+     "sentence": "Mi perro es grande.",
+     "sentence_lang": "es",
+     "tts": "https://d1vq87e9lcf771.cloudfront.net/eddyes/688d01e6f070162779d43a95769117ce",
+     "character": "https://d2pur3iezf4d1j.cloudfront.net/images/096d0b1f6280b962cd7080a7736dd2bb",
+     "words": [
+      "My",
+      "dog",
+      "is",
+      "big",
+      "green",
+      "blue"
+     ]
+    },
+    "solution": {
+     "accepted": [
+      "My dog is big.",
+      "My dog is big"
+     ]
+    }
+   },
+   {
+    "type": "multiple_choice",
+    "prompt": "Select the correct meaning",
+    "data": {
+     "variant": "text",
+     "sentence": "big",
+     "character": "https://d2pur3iezf4d1j.cloudfront.net/images/85c5ecb885f7073a3aebeb775946e329",
+     "new_word": false,
+     "choices": [
+      {
+       "id": "a",
+       "text": "grande",
+       "tts": "https://d1vq87e9lcf771.cloudfront.net/lines/b9cb526d547cdca0fcefc37ce02e305f"
+      },
+      {
+       "id": "b",
+       "text": "verde",
+       "tts": "https://d1vq87e9lcf771.cloudfront.net/lines/c925fe1e32f8641994241dbf2d00c292"
+      },
+      {
+       "id": "c",
+       "text": "azul",
+       "tts": "https://d1vq87e9lcf771.cloudfront.net/lines/a6d2fb8b5a294a0fc8a785b05e0b2090"
+      }
+     ]
+    },
+    "solution": {
+     "choice_id": "a"
+    }
+   },
+   {
+    "prompt": "Write this in English",
+    "type": "translate",
+    "data": {
+     "sentence": "Mi libro es verde.",
+     "sentence_lang": "es",
+     "tts": "https://d1vq87e9lcf771.cloudfront.net/beaes/e5e24d6eb39e693c48150e5fd51ff6e4",
+     "character": "https://d2pur3iezf4d1j.cloudfront.net/images/50af330449fbbaf257fc9868c4321586",
+     "words": [
+      "My",
+      "book",
+      "is",
+      "green",
+      "blue",
+      "suitcase"
+     ]
+    },
+    "solution": {
+     "accepted": [
+      "My book is green.",
+      "My book is green"
+     ]
+    }
+   },
+   {
+    "type": "multiple_choice",
+    "prompt": "Select the correct meaning",
+    "data": {
+     "variant": "text",
+     "sentence": "green",
+     "character": "https://d2pur3iezf4d1j.cloudfront.net/images/f4639160abfb44c54829ebeb62c0542d",
+     "new_word": false,
+     "choices": [
+      {
+       "id": "a",
+       "text": "azul",
+       "tts": "https://d1vq87e9lcf771.cloudfront.net/oscares/7147500b9006782ff91fa8df42211b38"
+      },
+      {
+       "id": "b",
+       "text": "grande",
+       "tts": "https://d1vq87e9lcf771.cloudfront.net/oscares/5a6b7cbddd0e00cb4a84585de5028f17"
+      },
+      {
+       "id": "c",
+       "text": "verde",
+       "tts": "https://d1vq87e9lcf771.cloudfront.net/oscares/b352dc1df47da42011bb6a9674c0791a"
+      }
+     ]
+    },
+    "solution": {
+     "choice_id": "c"
+    }
+   },
+   {
+    "prompt": "Write this in English",
+    "type": "translate",
+    "data": {
+     "sentence": "Mi maleta es azul.",
+     "sentence_lang": "es",
+     "tts": "https://d1vq87e9lcf771.cloudfront.net/lilyes2/af0bfec8741ef59178ce58f3b3cfc00e",
+     "character": "https://d2pur3iezf4d1j.cloudfront.net/images/81ca92172d70599306b16bcb87799195",
+     "words": [
+      "My",
+      "suitcase",
+      "is",
+      "blue",
+      "big",
+      "book"
+     ]
+    },
+    "solution": {
+     "accepted": [
+      "My suitcase is blue.",
+      "My suitcase is blue"
+     ]
+    }
+   },
+   {
+    "prompt": "Write this in English",
+    "type": "translate",
+    "data": {
+     "sentence": "Mi gato es azul.",
+     "sentence_lang": "es",
+     "tts": "https://d1vq87e9lcf771.cloudfront.net/beaes/d9736986170dcb1482455b4de032c87b",
+     "character": "https://d2pur3iezf4d1j.cloudfront.net/images/50af330449fbbaf257fc9868c4321586",
+     "words": [
+      "My",
+      "cat",
+      "is",
+      "blue",
+      "green",
+      "dog"
+     ]
+    },
+    "solution": {
+     "accepted": [
+      "My cat is blue.",
+      "My cat is blue"
+     ]
+    }
+   },
+   {
+    "type": "multiple_choice",
+    "prompt": "Select the correct meaning",
+    "data": {
+     "variant": "text",
+     "sentence": "blue",
+     "character": "https://d2pur3iezf4d1j.cloudfront.net/images/50af330449fbbaf257fc9868c4321586",
+     "new_word": false,
+     "choices": [
+      {
+       "id": "a",
+       "text": "azul",
+       "tts": "https://d1vq87e9lcf771.cloudfront.net/beaes/4db8ee76b3ae0da36670bc7f2bc65cc1"
+      },
+      {
+       "id": "b",
+       "text": "verde",
+       "tts": "https://d1vq87e9lcf771.cloudfront.net/beaes/c9a136863da383f1d80e134aa847edf6"
+      },
+      {
+       "id": "c",
+       "text": "grande",
+       "tts": "https://d1vq87e9lcf771.cloudfront.net/beaes/cf6fdfe6dc11a61cccd36430d82b9c30"
+      }
+     ]
+    },
+    "solution": {
+     "choice_id": "a"
+    }
+   },
+   {
+    "type": "match_pairs",
+    "prompt": "Select the matching pairs",
+    "data": {
+     "pairs": [
+      {
+       "id": "p1",
+       "left": "mamá",
+       "right": "mom",
+       "tts": "https://d1vq87e9lcf771.cloudfront.net/penelope/e8319898c5713fd43aa69b5d9b48853b"
+      },
+      {
+       "id": "p2",
+       "left": "agua",
+       "right": "water",
+       "tts": "https://d1vq87e9lcf771.cloudfront.net/penelope/2426e202da4d1488ed7b9d6d5be2f5b3"
+      },
+      {
+       "id": "p3",
+       "left": "azul",
+       "right": "blue",
+       "tts": "https://d1vq87e9lcf771.cloudfront.net/miguel/af1cd7b4c949c72909d493270ad7f58a"
+      },
+      {
+       "id": "p4",
+       "left": "leche",
+       "right": "milk",
+       "tts": "https://d1vq87e9lcf771.cloudfront.net/penelope/167c49869663d15f070858f4ffee801c"
+      },
+      {
+       "id": "p5",
+       "left": "grande",
+       "right": "big",
+       "tts": "https://d1vq87e9lcf771.cloudfront.net/penelope/fd9fefd4c477ae0c168f510300697fee"
+      }
+     ]
+    },
+    "solution": {}
+   },
+   {
+    "type": "match_pairs",
+    "prompt": "Select the matching pairs",
+    "data": {
+     "pairs": [
+      {
+       "id": "p1",
+       "left": "verde",
+       "right": "green",
+       "tts": "https://d1vq87e9lcf771.cloudfront.net/miguel/70f779fd1b603e29a81868c529344b51"
+      },
+      {
+       "id": "p2",
+       "left": "casa",
+       "right": "house",
+       "tts": "https://d1vq87e9lcf771.cloudfront.net/penelope/18b379f8bbc54f7ca61e62c3fb7d707f"
+      },
+      {
+       "id": "p3",
+       "left": "papá",
+       "right": "dad",
+       "tts": "https://d1vq87e9lcf771.cloudfront.net/penelope/87ad1997e4b7722870f7f647a1d3262e"
+      },
+      {
+       "id": "p4",
+       "left": "libro",
+       "right": "book",
+       "tts": "https://d1vq87e9lcf771.cloudfront.net/penelope/018cb70b0eb324b42364f3be7bc04caf"
+      },
+      {
+       "id": "p5",
+       "left": "maleta",
+       "right": "suitcase",
+       "tts": "https://d1vq87e9lcf771.cloudfront.net/penelope/f5245b943dc5014a35cbb6c6209b253a"
+      }
+     ]
+    },
+    "solution": {}
+   },
+   {
+    "prompt": "Write this in Spanish",
+    "type": "translate",
+    "data": {
+     "sentence": "My house is green.",
+     "sentence_lang": "en",
+     "tts": null,
+     "character": "https://d2pur3iezf4d1j.cloudfront.net/images/ad178aebb8dfd890ab602527440e685c",
+     "words": [
+      "Mi",
+      "casa",
+      "es",
+      "verde",
+      "azul",
+      "leche"
+     ]
+    },
+    "solution": {
+     "accepted": [
+      "Mi casa es verde.",
+      "Mi casa es verde"
+     ]
+    }
+   },
+   {
+    "prompt": "Write this in Spanish",
+    "type": "translate",
+    "data": {
+     "sentence": "My cat is big.",
+     "sentence_lang": "en",
+     "tts": null,
+     "character": "https://d2pur3iezf4d1j.cloudfront.net/images/52a5a774c4de18f4a4e8c91d91788347",
+     "words": [
+      "Mi",
+      "gato",
+      "es",
+      "grande",
+      "verde",
+      "perro"
+     ]
+    },
+    "solution": {
+     "accepted": [
+      "Mi gato es grande.",
+      "Mi gato es grande"
+     ]
+    }
+   }
+  ]
+ ],
+ "words": {
+  "mamá": {
+   "image": "https://d2pur3iezf4d1j.cloudfront.net/images/663d3893596e4841ad991ef1dc02ddbc",
+   "tts": "https://d1vq87e9lcf771.cloudfront.net/miguel/fc1de63db007df54a806256d6bfbbff3"
+  },
+  "gato": {
+   "image": "https://d2pur3iezf4d1j.cloudfront.net/images/9aa862ebf2f8636383e54ce23d340db9",
+   "tts": "https://d1vq87e9lcf771.cloudfront.net/penelope/111ca1a6333c1d11a24a66ad40da3215"
+  },
+  "papá": {
+   "image": "https://d2pur3iezf4d1j.cloudfront.net/images/bcabd1e0ad46cf5e8ee8339f6c5579d1",
+   "tts": "https://d1vq87e9lcf771.cloudfront.net/penelope/87ad1997e4b7722870f7f647a1d3262e"
+  },
+  "perro": {
+   "image": "https://d2pur3iezf4d1j.cloudfront.net/images/d8adb479aed80e6420f566afea110eb1",
+   "tts": "https://d1vq87e9lcf771.cloudfront.net/penelope/a9489cff87e165a41f64eed7a85afd1f"
+  },
+  "agua": {
+   "image": "https://d2pur3iezf4d1j.cloudfront.net/images/7afea32bcf0e8c6f9d446ad4aad416be",
+   "tts": "https://d1vq87e9lcf771.cloudfront.net/miguel/db125f511a83d46fbd6a9c88d6195664"
+  },
+  "leche": {
+   "image": "https://d2pur3iezf4d1j.cloudfront.net/images/645fa42dcea02c7e2970a1285e321562",
+   "tts": "https://d1vq87e9lcf771.cloudfront.net/miguel/6c7ad12eba3d8f69d6081786c7ba09df"
+  },
+  "libro": {
+   "image": "https://d2pur3iezf4d1j.cloudfront.net/images/b5406351772e6898e0999b4028cbf799",
+   "tts": "https://d1vq87e9lcf771.cloudfront.net/penelope/018cb70b0eb324b42364f3be7bc04caf"
+  },
+  "casa": {
+   "image": "https://d2pur3iezf4d1j.cloudfront.net/images/6d966ea1c0962c0b81bf2f1f82fc18fd",
+   "tts": "https://d1vq87e9lcf771.cloudfront.net/penelope/18b379f8bbc54f7ca61e62c3fb7d707f"
+  },
+  "maleta": {
+   "image": "https://d2pur3iezf4d1j.cloudfront.net/images/a6c7cbf5ac78d674ecde39a066508ee2",
+   "tts": "https://d1vq87e9lcf771.cloudfront.net/penelope/f5245b943dc5014a35cbb6c6209b253a"
+  },
+  "verde": {
+   "image": "https://d2pur3iezf4d1j.cloudfront.net/images/c1fba0f6343b3c5392b4b556b40274fa",
+   "tts": "https://d1vq87e9lcf771.cloudfront.net/penelope/df18f70671bb059542074b38e4b4af3d"
+  },
+  "azul": {
+   "image": "https://d2pur3iezf4d1j.cloudfront.net/images/fc102c2c6544341f2b61659af8acb4c2",
+   "tts": "https://d1vq87e9lcf771.cloudfront.net/miguel/af1cd7b4c949c72909d493270ad7f58a"
+  }
+ }
+}

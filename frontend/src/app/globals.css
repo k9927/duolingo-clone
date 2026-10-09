@@ -1,0 +1,193 @@
+@import "tailwindcss";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+/* Duolingo's own typeface (variable weight), loaded via the /duo-cdn rewrite. */
+@font-face {
+  font-family: "duolingo-sans";
+  src: url("/duo-cdn/vendor/f2331bbfd902cdf8971c4d3184a44283.woff2") format("woff2");
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "duolingo-sans";
+  src: url("/duo-cdn/vendor/3bbe299f41d8289a47d91773fee0cb6a.woff2") format("woff2");
+  font-weight: 100 900;
+  font-style: italic;
+  font-display: swap;
+}
+
+/* Duolingo design tokens, measured from duolingo.com (light + dark). */
+:root {
+  --snow: #ffffff;
+  --polar: #f7f7f7;
+  --swan: #e5e5e5;
+  --hare: #afafaf;
+  --wolf: #777777;
+  --eel: #4b4b4b;
+  --owl: #58cc02;
+  --tree-frog: #58a700;
+  --mask-green: #89e219;
+  --turtle: #a5ed6e;
+  --sea-sponge: #d7ffb8;
+  --macaw: #1cb0f6;
+  --whale: #1899d6;
+  --blue-jay: #84d8ff;
+  --iguana: #ddf4ff;
+  --sel-ink: #1cb0f6;
+  --cardinal: #ff4b4b;
+  --fire-ant: #ea2b2b;
+  --walking-fish: #ffdfe0;
+  --bee: #ffc800;
+  --bee-shadow: #e5a000;
+  --fox: #ff9600;
+  --fox-shadow: #cd7900;
+  --beetle: #ce82ff;
+  --beetle-shadow: #a568cc;
+  --humpback: #2b70c9;
+  /* Text on filled (green/blue/red) buttons. */
+  --on-color: #ffffff;
+  /* Streak popover header once today's streak is extended. */
+  --streak-extended: #ff9600;
+  color-scheme: light;
+}
+
+.dark {
+  --snow: #131f24;
+  --polar: #202f36;
+  --swan: #37464f;
+  --hare: #52656d;
+  --wolf: #dce6ec;
+  --eel: #f1f7fb;
+  --owl: #93d333;
+  --tree-frog: #79b933;
+  --mask-green: #90dc48;
+  --turtle: #5f8428;
+  --sea-sponge: #202f36;
+  --macaw: #49c0f8;
+  --whale: #1899d6;
+  --blue-jay: #3f85a7;
+  --iguana: #202f36;
+  --sel-ink: #1899d6;
+  --cardinal: #ee5555;
+  --fire-ant: #d84848;
+  --walking-fish: #202f36;
+  --bee: #ffc700;
+  --bee-shadow: #e5a000;
+  --fox: #ffab33;
+  --fox-shadow: #cd7900;
+  --on-color: #131f24;
+  --streak-extended: #cd7900;
+  color-scheme: dark;
+}
+
+@theme {
+  --font-sans: "duolingo-sans", var(--font-nunito), ui-rounded, "Segoe UI", system-ui, sans-serif;
+  /* Duolingo uses 500 for body text and 700 for headings/buttons. */
+  --font-weight-semibold: 500;
+  --font-weight-bold: 700;
+  --font-weight-extrabold: 700;
+  --font-weight-black: 800;
+
+  --animate-bounce-soft: bounce-soft 1.4s ease-in-out infinite;
+  --animate-shake: shake 0.4s ease-in-out;
+  --animate-pop: pop 0.35s ease-out;
+
+  @keyframes bounce-soft {
+    0%, 100% { transform: translate(-50%, 0); }
+    50% { transform: translate(-50%, -6px); }
+  }
+  @keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    20%, 60% { transform: translateX(-6px); }
+    40%, 80% { transform: translateX(6px); }
+  }
+  @keyframes pop {
+    0% { transform: scale(0.6); opacity: 0; }
+    70% { transform: scale(1.08); opacity: 1; }
+    100% { transform: scale(1); }
+  }
+}
+
+@theme inline {
+  /* brand colours (theme-aware) */
+  --color-feather: var(--owl);
+  --color-feather-dark: var(--tree-frog);
+  --color-mask: var(--mask-green);
+  --color-macaw: var(--macaw);
+  --color-macaw-dark: var(--whale);
+  --color-cardinal: var(--cardinal);
+  --color-cardinal-dark: var(--fire-ant);
+  --color-bee: var(--bee);
+  --color-bee-dark: var(--bee-shadow);
+  --color-fox: var(--fox);
+  --color-fox-dark: var(--fox-shadow);
+  --color-beetle: var(--beetle);
+  --color-beetle-dark: var(--beetle-shadow);
+  --color-humpback: var(--humpback);
+
+  /* semantic surfaces & ink */
+  --color-bg: var(--snow);
+  --color-surface-2: var(--polar);
+  --color-line: var(--swan);
+  --color-ink: var(--eel);
+  --color-muted: var(--wolf);
+  --color-faint: var(--hare);
+  --color-sel: var(--iguana);
+  --color-sel-line: var(--blue-jay);
+  --color-sel-ink: var(--sel-ink);
+  --color-correct-bg: var(--sea-sponge);
+  --color-correct-line: var(--turtle);
+  --color-correct-ink: var(--tree-frog);
+  --color-wrong-bg: var(--walking-fish);
+  --color-wrong-ink: var(--fire-ant);
+  --color-locked: var(--swan);
+  --color-locked-shadow: color-mix(in srgb, var(--swan) 80%, black);
+  --color-locked-ink: var(--hare);
+  --color-on-color: var(--on-color);
+}
+
+html,
+body {
+  background: var(--snow);
+  color: var(--eel);
+}
+
+body {
+  font-family: var(--font-sans);
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* The signature chunky "3D" button: a solid bottom shadow that collapses on press. */
+.btn-3d {
+  background: var(--btn-bg);
+  color: var(--btn-text);
+  box-shadow: 0 4px 0 var(--btn-shadow);
+  transition: transform 80ms, box-shadow 80ms, filter 150ms;
+}
+.btn-3d:hover:not(:disabled) {
+  filter: brightness(1.06);
+}
+.btn-3d:active:not(:disabled) {
+  transform: translateY(4px);
+  box-shadow: 0 0 0 var(--btn-shadow);
+}
+
+/* Outlined tile used by answer options and word-bank chips. */
+.tile {
+  border: 2px solid var(--swan);
+  box-shadow: 0 2px 0 var(--swan);
+  transition: transform 80ms, box-shadow 80ms, background-color 150ms;
+}
+.tile:active:not(:disabled) {
+  transform: translateY(2px);
+  box-shadow: 0 0 0 var(--swan);
+}
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  scrollbar-width: none;
+}
