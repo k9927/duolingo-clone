@@ -19,7 +19,7 @@ A full-stack clone of the Duolingo web app. You can work through a winding learn
 | Database | SQLite with a custom relational schema (12 tables), seeded automatically on first start |
 | Testing | pytest + FastAPI TestClient (unit tests for game rules, end-to-end API tests for the lesson loop) |
 | Audio | Duolingo's recorded clips where available, otherwise the browser's Web Speech API |
-| Hosting | Frontend on Vercel, backend on Render (`render.yaml`) |
+| Hosting | Frontend on Vercel, backend on PythonAnywhere (WSGI via `a2wsgi`, SQLite on a persistent disk) |
 
 ---
 
@@ -33,7 +33,7 @@ A full-stack clone of the Duolingo web app. You can work through a winding learn
 | **Lesson player** | 6 exercise types (below), an animated progress bar, the green/red feedback bar with "Correct solution", SKIP, keyboard shortcuts (1–9 to pick, Enter to check/continue), wrong answers re-queued at the end ("Previous mistake"), "N in a row" combo, mid-lesson owl interludes ("Let's review the exercise you missed!", "Super impressive!"), and a quit confirmation |
 | **Exercise types** | Multiple choice (image cards + "select the correct meaning"), translate with a word bank (ES→EN and EN→ES), match pairs, fill in the blank, type the answer (accent- and typo-tolerant, with an on-screen accent keyboard), and listen & tap (text-to-speech, with a slow 🐢 button) |
 | **Hearts** | You lose a heart for each mistake in a lesson. They regenerate 1 per 60 min (lazy, computed server-side). You can refill with gems or practise to earn a heart back. An "out of hearts" sheet blocks the lesson at 0 |
-| **XP & streak** | 10 XP per lesson +5 for a perfect lesson, practice 10 XP, legendary 40 XP, unit test 20 XP. The streak extends on the first XP of each local day. Streak freezes cover missed days |
+| **XP & streak** | 10 XP per lesson +5 for a perfect lesson, practice 10 XP, Sounds lesson 10 XP, legendary 40 XP, unit test 20 XP. The streak extends on the first XP of each local day. Streak freezes cover missed days |
 | **Daily goal** | Selectable goal (10/20/30/50 XP), a Quests page in Duolingo's signed-in layout ("Welcome Back!" banner, the "Earn N XP" daily quest with progress bar and chest, "More quests unlock soon") |
 | **Leaderboard** | Bronze League with weekly XP across 14 seeded learners: Duolingo's league badges and medals, a promotion zone (Bronze has no demotion), and a "Set your status" emoji picker whose emoji shows next to the learner on the board |
 | **Profile** | Duolingo's signed-in profile: photo banner with edit button, name, username, join date, following/followers, the dismissible LinkedIn card, Statistics (day streak, total XP, league with week tag, top 3 finishes) and tiered achievement badges with progress (VIEW ALL). The right panel shows Following/Followers and Add friends |
@@ -60,7 +60,7 @@ A full-stack clone of the Duolingo web app. You can work through a winding learn
 Shown as a "coming soon" message, as the brief allows:
 - **Speech recognition / pronunciation:** the Speak practice card (exercise audio itself is implemented)
 - **Super subscription and purchases:** Try Super / free-trial buttons, Unlimited Hearts, Target Practice UNLOCK; gems are mocked and earned in-app
-- **Friends and social:** follow, find and invite friends, Friend Streaks, LinkedIn sharing (the leaderboard is seeded with 13 learners)
+- **Friends and social:** follow, find and invite friends, Friend Streaks, LinkedIn sharing (the leaderboard is seeded with 13 other learners)
 - **Multiple languages:** Courses settings and "More courses" in the course menu; one seeded course (Spanish)
 - **Authentication:** a single default learner is always signed in; Log out shows a message
 - **Other:** notifications, social accounts and privacy settings, Listen and Stories practice, lesson review, chess
@@ -115,18 +115,18 @@ pytest
 ## Architecture
 
 ```
-┌────────────────────────── Next.js (client-rendered) ──────────────────────────┐
-│ app/(main)/learn|leaderboard|quests|shop|profile|settings  ← AppShell layout   │
-│ app/lesson|practice|legendary/[skillId]                    ← full-screen player│
+┌─────────────────────────── Next.js (client-rendered) ──────────────────────────┐
+│ app/(main)/learn|sounds|leaderboard|quests|shop|profile|… ← AppShell layout    │
+│ app/lesson|practice|legendary|jump/[skillId], practice/sounds ← lesson player  │
 │ components/  path/ lesson/ lesson/exercises/ shell/ ui/ providers/ mascot/     │
 │ lib/api.ts (typed fetch client) · lib/types.ts (mirrors API schemas)           │
 └───────────────────────────────────┬────────────────────────────────────────────┘
                                     │ JSON over HTTP (CORS)
 ┌───────────────────────────────────▼──────────────── FastAPI ───────────────────┐
-│ routers/   me · course · sessions · leaderboard · shop · dev   (thin HTTP layer)│
-│ services/  sessions (lesson loop) · grading · hearts · streak · progress ·      │
-│            achievements · clock · users        (business rules, no HTTP)        │
-│ models.py (SQLAlchemy ORM) · schemas.py (Pydantic contract) · seed/             │
+│ routers/   me · course · sessions · leaderboard · shop · dev  (thin HTTP layer)│
+│ services/  sessions (lesson loop) · grading · hearts · streak · progress ·     │
+│            achievements · clock · users · word_hints (business rules, no HTTP) │
+│ models.py (SQLAlchemy ORM) · schemas.py (Pydantic contract) · seed/            │
 └───────────────────────────────────┬────────────────────────────────────────────┘
                                     ▼
                                SQLite (duolingo.db)
@@ -165,14 +165,14 @@ erDiagram
 
 | Table | Purpose | Key columns |
 | --- | --- | --- |
-| `courses` | A language course | `code` (unique, e.g. `es-en`), `learning_language`, `from_language`, `flag` |
+| `courses` | A language course | `code` (unique, e.g. `es-en`), `learning_language`, `from_language`, `flag`. A hidden `es-sounds` course holds the Sounds lesson's questions |
 | `units` | Section of the path | `course_id` FK, `position` (unique per course), `title`, `color`, `guidebook` (JSON: key phrases, plus tips with title, body, optional table and examples) |
 | `skills` | A node on the path | `unit_id` FK, `position` (unique per unit), `title`, `icon` |
 | `lessons` | A level of a skill (a crown) | `skill_id` FK, `position` (unique per skill) |
 | `exercises` | One exercise | `lesson_id` FK, `position`, `type` (enum of 6), `prompt`, `data` (JSON the client renders), `solution` (JSON answer key, server-only) |
 | `users` | Learner and game state | `total_xp`, `gems`, `hearts` + `hearts_updated_at`, `streak`, `longest_streak`, `last_streak_date`, `streak_freezes`, `daily_goal_xp`, `timezone`, `theme`, `sound_effects`, `day_offset`, `status` (leaderboard emoji) |
 | `skill_progress` | Per-user progress per skill | `(user_id, skill_id)` unique, `lessons_completed`, `is_legendary`, `completed_at` |
-| `lesson_sessions` | One attempt (lesson / practice / legendary / unit_test) | `kind`, `status` (in_progress/completed/failed/abandoned), `lesson_id`, `exercise_ids` (JSON, ordered), `mistakes`, `xp_earned`, timestamps |
+| `lesson_sessions` | One attempt (lesson / practice / legendary / unit_test / sounds) | `kind`, `status` (in_progress/completed/failed/abandoned), `lesson_id`, `exercise_ids` (JSON, ordered), `mistakes`, `xp_earned`, timestamps |
 | `answer_attempts` | Every submitted answer | `session_id` FK, `exercise_id` FK, `submitted` (JSON), `is_correct` |
 | `xp_events` | XP ledger | `user_id`, `session_id`, `amount`, `source`, `activity_date` (indexed with user) |
 | `achievements` | One row per achievement tier | `(code, level)` unique, `metric`, `threshold`, `gem_reward` |
@@ -183,7 +183,7 @@ Foreign keys are enforced (`PRAGMA foreign_keys=ON`), and content cascades on de
 ### Exercise `data` / `solution` shapes
 | type | `data` (sent to client) | `solution` | answer payload |
 | --- | --- | --- | --- |
-| `multiple_choice` | `choices[{id,text,image?}]`, `variant`, `sentence?` | `{choice_id}` | `{choice_id}` |
+| `multiple_choice` | `choices[{id,text,image?}]`, `variant` (`image`/`text`/`audio`), `sentence?`, `audio_text?` | `{choice_id}` | `{choice_id}` |
 | `translate` | `sentence`, `sentence_lang`, `words[]` | `{accepted[]}` | `{tokens[]}` |
 | `listen` | `audio_text`, `words[]` | `{accepted[]}` | `{tokens[]}` |
 | `match_pairs` | `pairs[{id,left,right}]` | – | `{matches[{left,right}]}` |
@@ -222,7 +222,9 @@ Error codes used by the UI include `out_of_hearts`, `skill_locked`, `session_inc
 ---
 
 ## Seed data
-- **Course:** Spanish for English speakers, with 3 units and 10 skills. Unit 1 ("Order at a café") opens with Duolingo's own first three lessons, including their illustrations and recorded voices (`backend/app/seed/duolingo_lessons.json`). The rest have 3 lessons per skill. That is 27 lessons and 216 exercises, generated deterministically from vocabulary, sentences and fill-in-the-blank items in `backend/app/seed/content.py` and `builder.py`.
+- **Course:** Spanish for English speakers, with 3 units and 10 skills. Unit 1 ("Order at a café") opens with Duolingo's own first three lessons, including their illustrations and recorded voices (`backend/app/seed/duolingo_lessons.json`). The other skills have 3 lessons each (27 lessons, 8 exercises each), generated deterministically from vocabulary, sentences and fill-in-the-blank items in `backend/app/seed/content.py` and `builder.py`. In total: 30 lessons and 253 exercises.
+- **Sounds lesson:** 32 "Select what you hear" questions, one per sound on the Sounds tab (`backend/app/seed/sounds.py`).
+- **Word hints:** meanings and example sentences for every word in the exercise sentences (`backend/app/seed/hints.py`).
 - **Learner "Alex" (`learner`):**
   - 2 skills finished and 1 lesson into the third
   - 90 XP, 500 gems and 4/5 hearts
@@ -287,11 +289,13 @@ backend/
     schemas.py         Pydantic request/response models
     deps.py            DB session + current-user dependency (lazy hearts/streak sync)
     routers/           me, course, sessions, leaderboard, shop, dev
-    services/          sessions, grading, hearts, streak, progress, achievements, clock, users
-    seed/              content.py (course data), builder.py (exercise generator), seed.py
+    services/          sessions, grading, hearts, streak, progress, achievements, clock, users, word_hints
+    seed/              content.py (course data), builder.py (exercise generator), duolingo_lessons.json,
+                       hints.py (word hints), sounds.py (Sounds lesson), seed.py
+  wsgi.py              WSGI entry point for PythonAnywhere
   tests/               rule unit tests + API flow tests
 frontend/
-  src/app/             routes: (main)/learn, leaderboard, quests, shop, profile, settings (preferences, profile, demo); help; lesson/, practice/, legendary/, jump/, (main)/guidebook
+  src/app/             routes: (main)/learn, sounds, practice-hub, leaderboard, quests, shop, profile, settings (preferences, profile, demo), guidebook; help; lesson/, practice/ (+ practice/sounds), legendary/, jump/
   src/components/      shell/ (sidebar, stats bar, right panel), path/, lesson/ (+ exercises/), ui/, mascot/, providers/
   src/lib/             api client, types, hooks, sounds, speech, colour helpers
 ```

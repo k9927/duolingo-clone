@@ -11,7 +11,7 @@ pinned: false
 # Duolingo Clone API
 
 FastAPI + SQLite backend of the [Duolingo clone](https://github.com/k9927/duolingo-clone).
-The block above configures it as a Docker app on Hugging Face Spaces.
+The live API runs on PythonAnywhere through `wsgi.py`. The block above is only used if you deploy this folder as a Docker app on Hugging Face Spaces instead.
 
 - Interactive API docs: `/docs`
 - Health check: `/api/health`
