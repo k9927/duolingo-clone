@@ -6,8 +6,8 @@ import type { HintedText, HintToken } from "@/lib/types";
 
 /**
  * A sentence with Duolingo's word hints: every word is underlined with dashes, hovering
- * (or tapping) one shows its meanings in a popover, and clicking a word in the course
- * language reads it aloud.
+ * (or tapping) one shows its meanings in a popover, and hovering or clicking a word in
+ * the course language reads it aloud.
  */
 export function HintedSentence({
   hinted,
@@ -31,7 +31,12 @@ export function HintedSentence({
             <span
               role="button"
               tabIndex={0}
-              onMouseEnter={() => hasHints && setOpen(i)}
+              onPointerEnter={(e) => {
+                // Like Duolingo, pointing at a word reads it aloud. Touch taps go through onClick instead.
+                if (e.pointerType !== "mouse") return;
+                if (speakable) say(t.text, t.tts, hinted.lang);
+                if (hasHints) setOpen(i);
+              }}
               onClick={() => {
                 if (speakable) say(t.text, t.tts, hinted.lang);
                 if (hasHints) setOpen(i);
