@@ -131,7 +131,22 @@ export interface Choice {
   tts?: string;
 }
 
-export type Exercise =
+/** One piece of an exercise sentence: a word/phrase with hover hints, or plain spacing/punctuation. */
+export interface HintToken {
+  text: string;
+  hints?: string[] | null;
+  tts?: string | null;
+}
+
+export interface HintedText {
+  lang: string;
+  tokens: HintToken[];
+}
+
+export type Exercise = {
+  /** Hover hints for the sentences in `data`, keyed by field name ("sentence", "before", "after"). */
+  hints?: Record<string, HintedText>;
+} & (
   | {
       id: number;
       type: "multiple_choice";
@@ -167,7 +182,8 @@ export type Exercise =
       type: "type_answer";
       prompt: string;
       data: { sentence: string; sentence_lang: string };
-    };
+    }
+);
 
 export type Answer = Record<string, unknown>;
 

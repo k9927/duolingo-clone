@@ -5,6 +5,7 @@ from app.config import settings
 from app.deps import DB, CurrentUser
 from app.models import LessonSession, SessionKind
 from app.services import sessions as svc
+from app.services import word_hints
 from app.services.errors import DomainError
 from app.services.users import build_me
 
@@ -17,6 +18,11 @@ def _session_out(db, user, session: LessonSession) -> schemas.SessionOut:
     course = user.current_course
     legendary = session.kind == SessionKind.LEGENDARY
     unit = skill.unit if skill else None
+    language = course.learning_language if course else "es"
+    exercises = [
+        schemas.ExerciseOut.model_validate(e).model_copy(update={"hints": word_hints.for_exercise(e, language)})
+        for e in svc.session_exercises(db, session)
+    ]
     return schemas.SessionOut(
         id=session.id,
         kind=session.kind.value,
@@ -25,8 +31,8 @@ def _session_out(db, user, session: LessonSession) -> schemas.SessionOut:
         unit_position=unit.position if unit else None,
         lesson_position=lesson.position if lesson else None,
         lessons_total=len(skill.lessons) if skill else None,
-        language=course.learning_language if course else "es",
-        exercises=[schemas.ExerciseOut.model_validate(e) for e in svc.session_exercises(db, session)],
+        language=language,
+        exercises=exercises,
         hearts=user.hearts,
         time_limit_seconds=settings.legendary_time_limit_seconds if legendary else None,
         max_mistakes=svc.max_mistakes(session.kind),

@@ -1,6 +1,7 @@
 "use client";
 
 import { useCallback, useState } from "react";
+import { HintedSentence } from "./HintedSentence";
 import { ExerciseTitle, KeyHint, LessonCharacter, useNumberKeys, type ExerciseProps } from "./shared";
 import { sounds } from "@/lib/sounds";
 import { speak } from "@/lib/speech";
@@ -38,7 +39,7 @@ export function FillBlank({ exercise, language, locked, feedback, onChange }: Ex
         <LessonCharacter seed={before + after} size={110} feedback={feedback} />
         <div>
           <p className="flex flex-wrap items-center gap-x-2 gap-y-3 text-2xl font-semibold">
-            <span>{before}</span>
+            {exercise.hints?.before ? <HintedSentence hinted={exercise.hints.before} speakable /> : <span>{before}</span>}
             <button
               onClick={() => picked !== null && choose(picked)}
               disabled={locked || picked === null}
@@ -48,7 +49,7 @@ export function FillBlank({ exercise, language, locked, feedback, onChange }: Ex
                 <span className="tile rounded-xl bg-bg px-3 py-1 text-lg">{choices[picked]}</span>
               )}
             </button>
-            <span>{after}</span>
+            {exercise.hints?.after ? <HintedSentence hinted={exercise.hints.after} speakable /> : <span>{after}</span>}
           </p>
           <p className="mt-3 font-semibold text-muted">{translation}</p>
         </div>

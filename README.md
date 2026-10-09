@@ -43,6 +43,7 @@ A full-stack clone of the Duolingo web app. You can work through a winding learn
 
 ### Bonus features
 - **Audio:** Duolingo-style exercise audio. Spanish sentences are read aloud when an exercise appears (with a replay button), Spanish word tiles, match pairs, picture cards and blank choices speak when tapped, listening exercises have normal and slow (🐢) playback, and the Spanish answer is read back after a correct English→Spanish translation, typed answer or filled blank. Recorded Duolingo clips are used where a word has one; everything else uses the browser's text-to-speech with a native Spanish voice when installed
+- **Word hints:** like Duolingo, every word of an exercise sentence has a dashed underline. Hovering (or tapping) a word shows its meanings in a popover, and clicking a Spanish word reads it aloud. Phrases such as *buenos días* or *por favor* are hinted as one unit. Hints work for Spanish sentences (English meanings) and English sentences (Spanish meanings); the server splits each sentence into tokens (`services/word_hints.py`, dictionary in `seed/hints.py`)
 - **Achievements:** Wildfire, Sage, Scholar, Sharpshooter, Conqueror and Legendary, each with gem rewards
 - **Leaderboard:** a working league ranked from the real XP ledger across seeded users
 - **Timed "Legendary" challenge:** 3 minutes and 3 mistakes, and it turns the node gold
@@ -101,7 +102,7 @@ Open http://localhost:3000.
 cd backend
 pytest
 ```
-29 tests cover streak, heart and grading rules, plus end-to-end API flows: a full lesson, mistakes, running out of hearts, practice, refill, locked skills, time travel, legendary, unit tests (jump ahead), the daily-goal gem chest, guidebook, leaderboard status, the listening-exercises preference, leaderboard and profile.
+33 tests cover streak, heart and grading rules, plus end-to-end API flows: a full lesson, mistakes, running out of hearts, practice, refill, locked skills, time travel, legendary, unit tests (jump ahead), the daily-goal gem chest, guidebook, leaderboard status, the listening-exercises preference, word hints, leaderboard and profile.
 
 ### Trying the time-based mechanics
 **Demo tools** at `/settings/demo` (linked from Settings → Profile and the Help Center) lets you:
@@ -204,7 +205,7 @@ All endpoints are under `/api`. Errors return `{ "code": "...", "message": "..."
 | GET | `/courses` | Available courses |
 | GET | `/path` | Units → skills with state and lesson progress for the current course |
 | GET | `/units/{id}/guidebook` | Unit number, key phrases and structured grammar tips |
-| POST | `/sessions` | Start a session `{kind: lesson\|practice\|legendary\|unit_test, skill_id?}` (for `unit_test`, `skill_id` is the first skill of the unit to jump to). Returns exercises without answers |
+| POST | `/sessions` | Start a session `{kind: lesson\|practice\|legendary\|unit_test, skill_id?}` (for `unit_test`, `skill_id` is the first skill of the unit to jump to). Returns exercises without answers, with word-hint tokens for their sentences |
 | POST | `/sessions/{id}/answers` | Grade an answer `{exercise_id, answer}`. Returns correctness, solution, hearts and status |
 | POST | `/sessions/{id}/complete` | Finish: awards XP, updates streak/progress/achievements and returns the results screen data |
 | POST | `/sessions/{id}/abandon` | Quit a session |

@@ -165,11 +165,25 @@ class StartSession(BaseModel):
     skill_id: int | None = None
 
 
+class HintToken(BaseModel):
+    text: str
+    # None for spaces and punctuation; a word without known meanings gets [].
+    hints: list[str] | None = None
+    tts: str | None = None
+
+
+class HintedText(BaseModel):
+    lang: str
+    tokens: list[HintToken]
+
+
 class ExerciseOut(ORM):
     id: int
     type: str
     prompt: str
     data: dict[str, Any]
+    # Word-by-word hover hints for the sentences in `data`, keyed by field name.
+    hints: dict[str, HintedText] = {}
 
 
 class SessionOut(BaseModel):

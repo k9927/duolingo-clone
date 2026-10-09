@@ -6,7 +6,8 @@ import { LottieAnim } from "../../mascot/LottieAnim";
 import { Owl } from "../../mascot/Owl";
 import { DUO } from "@/lib/duoAssets";
 import { say } from "@/lib/speech";
-import type { Answer, Exercise } from "@/lib/types";
+import type { Answer, Exercise, HintedText } from "@/lib/types";
+import { HintedSentence } from "./HintedSentence";
 
 export type FeedbackState = "correct" | "wrong" | null;
 
@@ -56,6 +57,7 @@ export function CharacterBubble({
   lang,
   speakable,
   tts,
+  hinted,
   feedback = null,
 }: {
   text: string;
@@ -64,6 +66,8 @@ export function CharacterBubble({
   /** Character art from lesson data; the animated cast is used instead so it can react to answers. */
   character?: string | null;
   tts?: string | null;
+  /** Word-by-word hover hints for `text`, when the server sent them. */
+  hinted?: HintedText;
   feedback?: FeedbackState;
 }) {
   // Like Duolingo, a sentence in the course language is read aloud when the exercise appears.
@@ -88,9 +92,13 @@ export function CharacterBubble({
               <SpeakerIcon size={26} />
             </button>
           )}
-          <span className="text-[17px] font-semibold underline decoration-line decoration-dashed decoration-2 underline-offset-[6px]">
-            {text}
-          </span>
+          {hinted ? (
+            <HintedSentence hinted={hinted} speakable={speakable} className="text-[17px] font-semibold" />
+          ) : (
+            <span className="text-[17px] font-semibold underline decoration-line decoration-dashed decoration-2 underline-offset-[6px]">
+              {text}
+            </span>
+          )}
         </div>
       </div>
     </div>

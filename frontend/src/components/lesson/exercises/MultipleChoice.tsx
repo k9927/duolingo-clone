@@ -63,7 +63,17 @@ export function MultipleChoice({ exercise, language, locked, feedback, onChange 
   return (
     <div>
       <ExerciseTitle>{exercise.prompt}</ExerciseTitle>
-      {sentence && <CharacterBubble text={sentence} lang={language} speakable character={character} feedback={feedback} />}
+      {sentence && (
+        <CharacterBubble
+          text={sentence}
+          lang={language}
+          // Some prompts are a single English word ("dog"); only course-language sentences are read aloud.
+          speakable={(exercise.hints?.sentence?.lang ?? language) === language}
+          hinted={exercise.hints?.sentence}
+          character={character}
+          feedback={feedback}
+        />
+      )}
       <div className="flex flex-col gap-2">
         {choices.map((c, i) => {
           const isSel = selected === c.id;

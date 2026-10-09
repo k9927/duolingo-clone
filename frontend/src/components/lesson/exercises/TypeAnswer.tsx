@@ -36,7 +36,7 @@ export function TypeAnswer({ exercise, language, locked, feedback, onChange }: E
   return (
     <div>
       <ExerciseTitle>{exercise.prompt}</ExerciseTitle>
-      <CharacterBubble text={exercise.data.sentence} lang={exercise.data.sentence_lang} speakable={exercise.data.sentence_lang === language} feedback={feedback} />
+      <CharacterBubble text={exercise.data.sentence} lang={exercise.data.sentence_lang} speakable={exercise.data.sentence_lang === language} hinted={exercise.hints?.sentence} feedback={feedback} />
       <textarea
         ref={ref}
         value={text}

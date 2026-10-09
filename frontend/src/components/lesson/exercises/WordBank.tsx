@@ -58,6 +58,7 @@ export function WordBank(props: Props) {
           speakable={exercise.data.sentence_lang === language}
           character={exercise.data.character}
           tts={exercise.data.tts}
+          hinted={exercise.hints?.sentence}
           feedback={feedback}
         />
       ) : (

@@ -228,3 +228,26 @@ def test_time_travel_response_applies_heart_regen_and_streak_break(client):
     me = client.post("/api/dev/time-travel", json={"days": 1}).json()
     assert me["hearts"] == 5  # a day is far longer than 5 regeneration periods
     assert me["streak"] == 0  # the seeded streak ended yesterday, so a skipped day breaks it
+
+
+def test_session_exercises_carry_word_hints(client):
+    skill = active_skill(client)
+    session = client.post("/api/sessions", json={"kind": "lesson", "skill_id": skill["id"]}).json()
+    hinted = [ex for ex in session["exercises"] if ex["hints"]]
+    assert hinted
+    for ex in hinted:
+        for field, h in ex["hints"].items():
+            # Tokens cover the sentence exactly, so the client can render it as written.
+            assert "".join(t["text"] for t in h["tokens"]) == ex["data"][field]
+            assert h["lang"] in ("es", "en")
+
+
+def test_word_hints_group_phrases_and_attach_audio():
+    from app.services.word_hints import segment
+
+    tokens = segment("Buenas noches, mamá.", "es")
+    assert [t["text"] for t in tokens] == ["Buenas noches", ", ", "mamá", "."]
+    assert tokens[0]["hints"][0] == "good night"
+    assert "hints" not in tokens[1]
+    assert tokens[2]["tts"].startswith("https://")
+    assert segment("I have a dog.", "en")[0] == {"text": "I have", "hints": ["tengo"]}
