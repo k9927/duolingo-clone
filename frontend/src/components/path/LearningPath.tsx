@@ -168,9 +168,10 @@ function UnitNodes({ unit, unitIndex, direction, selected, onSelect, activeRef }
         </Fragment>
       ))}
 
-      <div style={shift()} title={unit.completed ? "Unit complete!" : "Finish the unit to earn this trophy"}>
+      {/* Like Duolingo, the path curves back so the unit's trophy sits on the centre line. */}
+      <div title={unit.completed ? "Unit complete!" : "Finish the unit to earn this trophy"}>
         <div
-          className="flex h-[57px] w-[70px] items-center justify-center rounded-[50%]"
+          className={`relative flex h-[57px] w-[70px] items-center justify-center rounded-[50%] ${unit.completed ? "node-shine" : ""}`}
           style={{
             background: unit.completed ? "var(--bee)" : "var(--swan)",
             boxShadow: `0 8px 0 ${nodeShadow(unit.completed ? "var(--bee)" : "var(--swan)")}`,

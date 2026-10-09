@@ -80,7 +80,7 @@ export const PathNode = forwardRef<HTMLDivElement, PathNodeProps>(function PathN
           onClick();
         }}
         aria-label={`${skill.title}: ${state}`}
-        className="btn-3d relative flex h-[57px] w-[70px] items-center justify-center rounded-[50%]"
+        className={`btn-3d relative flex h-[57px] w-[70px] items-center justify-center rounded-[50%] ${locked ? "" : "node-shine"}`}
         style={
           {
             "--btn-bg": fill,
@@ -111,7 +111,7 @@ export function JumpNode({ skillId, unitNumber, color }: { skillId: number; unit
         <span className="absolute left-1/2 top-full h-3 w-3 -translate-x-1/2 -translate-y-[5px] rotate-45 border-b-2 border-r-2 border-line bg-bg" />
       </span>
       <span
-        className="btn-3d relative flex h-[57px] w-[70px] items-center justify-center rounded-[50%]"
+        className="btn-3d node-shine relative flex h-[57px] w-[70px] items-center justify-center rounded-[50%]"
         style={{ "--btn-bg": color, "--btn-shadow": nodeShadow(color), boxShadow: `0 8px 0 ${nodeShadow(color)}` } as React.CSSProperties}
       >
         <DuoImg src={DUO.path.jump} width={42} height={34} />

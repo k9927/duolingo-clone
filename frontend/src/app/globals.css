@@ -177,6 +177,26 @@ body {
   box-shadow: 0 0 0 var(--btn-shadow);
 }
 
+/* Glossy highlight on coloured path nodes: two light diagonal bands across the top left,
+   like Duolingo's buttons. The icon is lifted above it. */
+.node-shine::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  background: linear-gradient(
+    125deg,
+    rgb(255 255 255 / 0.2) 0 32%,
+    transparent 32% 39%,
+    rgb(255 255 255 / 0.2) 39% 47%,
+    transparent 47%
+  );
+}
+.node-shine > * {
+  position: relative;
+}
+
 /* Outlined tile used by answer options and word-bank chips. */
 .tile {
   border: 2px solid var(--swan);
