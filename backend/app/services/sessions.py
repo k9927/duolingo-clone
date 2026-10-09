@@ -34,6 +34,7 @@ from app.models import (
     User,
     XpEvent,
 )
+from app.seed.sounds import SOUNDS_COURSE_CODE, ensure_sounds_course
 from app.services import achievements, hearts, progress, streak
 from app.services.clock import to_local_date, user_now, user_today
 from app.services.errors import DomainError, NotFound
@@ -44,7 +45,8 @@ from app.services.grading import GradeResult, grade
 
 def _get_skill(db: Session, skill_id: int) -> Skill:
     skill = db.get(Skill, skill_id)
-    if skill is None:
+    # The Sounds tab's questions are stored as a skill too, but it isn't on the path.
+    if skill is None or skill.unit.course.code == SOUNDS_COURSE_CODE:
         raise NotFound("Skill")
     return skill
 
@@ -108,6 +110,14 @@ def start_practice(db: Session, user: User, skill_id: int | None = None) -> Less
         raise DomainError("nothing_to_practice", "Complete a lesson first to unlock practice.", 409)
     picked = random.sample(pool, min(settings.practice_exercise_count, len(pool)))
     return _new_session(db, user, SessionKind.PRACTICE, picked, skill_id=skill_id)
+
+
+def start_sounds(db: Session, user: User) -> LessonSession:
+    """A "Select what you hear" lesson started from the Sounds tab."""
+    course = ensure_sounds_course(db)
+    pool = [e.id for unit in course.units for skill in unit.skills for lesson in skill.lessons for e in lesson.exercises]
+    picked = random.sample(pool, min(settings.sounds_exercise_count, len(pool)))
+    return _new_session(db, user, SessionKind.SOUNDS, picked)
 
 
 def start_legendary(db: Session, user: User, skill_id: int) -> LessonSession:
@@ -267,6 +277,8 @@ def complete(db: Session, user: User, session: LessonSession) -> Completion:
     elif session.kind == SessionKind.PRACTICE:
         breakdown.append(("Practice complete", settings.practice_xp))
         heart_gained = hearts.gain_heart(user)
+    elif session.kind == SessionKind.SOUNDS:
+        breakdown.append(("Sounds lesson complete", settings.practice_xp))
     elif session.kind == SessionKind.UNIT_TEST:
         breakdown.append(("Unit test passed", settings.unit_test_xp))
         _complete_units_before(db, user, session)

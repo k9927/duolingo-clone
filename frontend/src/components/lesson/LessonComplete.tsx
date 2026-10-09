@@ -44,6 +44,7 @@ const TITLES: Record<SessionKind, string> = {
   practice: "Practice Complete!",
   legendary: "Legendary!",
   unit_test: "Test passed!",
+  sounds: "Lesson Complete!",
 };
 
 export function LessonComplete({ kind, result, onContinue }: { kind: SessionKind; result: CompleteResult; onContinue: () => void }) {

@@ -30,6 +30,7 @@ from app.models import (
 )
 from app.seed import content
 from app.seed.builder import build_lesson, static_lessons
+from app.seed.sounds import ensure_sounds_course
 from app.services import achievements
 from app.services.clock import user_today, week_start
 
@@ -174,9 +175,13 @@ def seed_league(db: Session, course: Course, today) -> None:
 
 def seed(db: Session) -> bool:
     """Loads seed data into an empty database. Returns False if data already exists."""
-    if db.scalar(select(Course.id).limit(1)) is not None:
+    if db.scalar(select(Course.id).where(Course.code == content.COURSE["code"])) is not None:
+        # Databases seeded before the Sounds tab got its lesson receive its questions now.
+        ensure_sounds_course(db)
+        db.commit()
         return False
     course = seed_course(db)
+    ensure_sounds_course(db)
     seed_achievements(db)
     learner = seed_learner(db, course)
     seed_league(db, course, user_today(learner))

@@ -238,8 +238,9 @@ export function LessonPlayer({ kind, skillId }: { kind: SessionKind; skillId?: n
 
   const exit = useCallback(() => {
     void refresh();
-    router.push("/learn");
-  }, [refresh, router]);
+    // A Sounds lesson returns to the Sounds tab it was started from.
+    router.push(kind === "sounds" ? "/sounds" : "/learn");
+  }, [refresh, router, kind]);
 
   const quit = useCallback(() => {
     if (session && (phase === "playing" || phase === "failed")) void api.abandon(session.id).catch(() => undefined);

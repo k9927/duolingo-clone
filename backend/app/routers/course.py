@@ -4,6 +4,7 @@ from sqlalchemy import select
 from app import schemas
 from app.deps import DB, CurrentUser
 from app.models import Course, Unit
+from app.seed.sounds import SOUNDS_COURSE_CODE
 from app.services import progress
 from app.services.errors import DomainError, NotFound
 
@@ -12,7 +13,8 @@ router = APIRouter(prefix="/api", tags=["course"])
 
 @router.get("/courses", response_model=list[schemas.CourseSummary])
 def list_courses(db: DB):
-    return db.scalars(select(Course).order_by(Course.id)).all()
+    # The Sounds tab's question bank is stored as a course but isn't one learners pick.
+    return db.scalars(select(Course).where(Course.code != SOUNDS_COURSE_CODE).order_by(Course.id)).all()
 
 
 @router.get("/path", response_model=schemas.PathOut)

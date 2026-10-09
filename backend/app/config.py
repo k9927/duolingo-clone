@@ -47,6 +47,7 @@ class Settings(BaseSettings):
     unit_test_xp: int = 20
 
     practice_exercise_count: int = 8
+    sounds_exercise_count: int = 8
 
     @property
     def cors_origin_list(self) -> list[str]:

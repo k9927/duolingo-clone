@@ -254,3 +254,22 @@ def test_word_hints_group_phrases_and_attach_audio():
     assert segment("I have a dog.", "en")[0]["hints"] == ["tengo"]
     # The example is left out when it is the very sentence being shown.
     assert "example" not in segment("Tengo un perro.", "es")[2]
+
+
+def test_sounds_lesson_asks_to_select_what_you_hear(client, db):
+    me_before = client.get("/api/me").json()
+    session = client.post("/api/sessions", json={"kind": "sounds"}).json()
+    assert session["kind"] == "sounds" and session["exercises"]
+    for ex in session["exercises"]:
+        assert ex["prompt"] == "Select what you hear"
+        assert ex["data"]["variant"] == "audio"
+        assert ex["data"]["audio_text"] in [c["text"] for c in ex["data"]["choices"]]
+    result = play(client, db, session).json()
+    assert result["xp_earned"] == 10
+    assert result["me"]["total_xp"] == me_before["total_xp"] + 10
+
+
+def test_sounds_course_is_hidden(client):
+    assert [c["code"] for c in client.get("/api/courses").json()] == ["es-en"]
+    units = client.get("/api/path").json()["units"]
+    assert all(u["title"] != "Sounds" for u in units)

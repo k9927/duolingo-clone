@@ -48,6 +48,7 @@ class SessionKind(str, enum.Enum):
     PRACTICE = "practice"
     LEGENDARY = "legendary"
     UNIT_TEST = "unit_test"  # "Jump here?" test that skips ahead to a later unit
+    SOUNDS = "sounds"  # "Select what you hear" lesson from the Sounds tab
 
 
 class SessionStatus(str, enum.Enum):

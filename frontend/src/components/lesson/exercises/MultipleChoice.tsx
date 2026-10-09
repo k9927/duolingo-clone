@@ -1,12 +1,13 @@
 "use client";
 
-import { useCallback, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { CharacterBubble, ExerciseTitle, KeyHint, NewWordBadge, tileClasses, useNumberKeys, type ExerciseProps } from "./shared";
 import { sounds } from "@/lib/sounds";
-import { say } from "@/lib/speech";
+import { say, speak } from "@/lib/speech";
+import { SpeakerIcon } from "../../icons";
 
 export function MultipleChoice({ exercise, language, locked, feedback, onChange }: ExerciseProps<"multiple_choice">) {
-  const { choices, variant, sentence, new_word: newWord, character } = exercise.data;
+  const { choices, variant, sentence, new_word: newWord, character, audio_text: audioText } = exercise.data;
   const [selected, setSelected] = useState<string | null>(null);
 
   const select = useCallback(
@@ -15,14 +16,22 @@ export function MultipleChoice({ exercise, language, locked, feedback, onChange 
       const choice = choices[index];
       setSelected(choice.id);
       onChange({ choice_id: choice.id });
-      // Picture cards and plain text options are in the course language; with a sentence shown, options are translations.
-      if (variant === "image" || choice.tts || !sentence) say(choice.text, choice.tts, language);
+      // Picture cards and plain text options are in the course language; with a sentence shown, options are
+      // translations. In "Select what you hear" reading the options aloud would give the answer away.
+      if (variant !== "audio" && (variant === "image" || choice.tts || !sentence)) say(choice.text, choice.tts, language);
       else sounds.tap();
     },
     [choices, locked, onChange, variant, language, sentence],
   );
 
   useNumberKeys(choices.length, select, !locked);
+
+  // "Select what you hear" plays the word as soon as the question appears.
+  useEffect(() => {
+    if (variant !== "audio" || !audioText) return;
+    const t = setTimeout(() => speak(audioText, language), 350);
+    return () => clearTimeout(t);
+  }, [variant, audioText, language]);
 
   if (variant === "image") {
     return (
@@ -63,6 +72,26 @@ export function MultipleChoice({ exercise, language, locked, feedback, onChange 
   return (
     <div>
       <ExerciseTitle>{exercise.prompt}</ExerciseTitle>
+      {variant === "audio" && audioText && (
+        <div className="mb-10 flex items-center justify-center gap-4">
+          <button
+            onClick={() => speak(audioText, language)}
+            className="btn-3d flex h-[110px] w-[130px] items-center justify-center rounded-3xl"
+            style={{ "--btn-bg": "var(--macaw)", "--btn-shadow": "var(--whale)" } as React.CSSProperties}
+            aria-label="Play audio"
+          >
+            <SpeakerIcon size={56} color="#fff" />
+          </button>
+          <button
+            onClick={() => speak(audioText, language, true)}
+            className="btn-3d flex h-[70px] w-[76px] items-center justify-center rounded-2xl text-3xl"
+            style={{ "--btn-bg": "var(--macaw)", "--btn-shadow": "var(--whale)" } as React.CSSProperties}
+            aria-label="Play audio slowly"
+          >
+            🐢
+          </button>
+        </div>
+      )}
       {sentence && (
         <CharacterBubble
           text={sentence}

@@ -94,7 +94,7 @@ export default function SoundsPage() {
       <div className="mb-10 flex flex-col items-center text-center">
         <h1 className="text-[32px] font-extrabold leading-tight">Let&apos;s learn Spanish sounds!</h1>
         <p className="mt-4 text-[19px] font-semibold">Train your ear and learn to pronounce Spanish sounds</p>
-        <Button variant="secondary" size="lg" href="/practice" className="mt-8 w-full max-w-[390px]">
+        <Button variant="secondary" size="lg" href="/practice/sounds" className="mt-8 w-full max-w-[390px]">
           Start +10 XP
         </Button>
       </div>

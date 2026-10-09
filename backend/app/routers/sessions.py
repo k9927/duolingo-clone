@@ -41,12 +41,14 @@ def _session_out(db, user, session: LessonSession) -> schemas.SessionOut:
 
 @router.post("", response_model=schemas.SessionOut, status_code=201)
 def start_session(body: schemas.StartSession, db: DB, user: CurrentUser):
-    if body.kind != "practice" and body.skill_id is None:
+    if body.kind not in ("practice", "sounds") and body.skill_id is None:
         raise DomainError("skill_required", "skill_id is required for this kind of session.")
     if body.kind == "lesson":
         session = svc.start_lesson(db, user, body.skill_id)
     elif body.kind == "legendary":
         session = svc.start_legendary(db, user, body.skill_id)
+    elif body.kind == "sounds":
+        session = svc.start_sounds(db, user)
     elif body.kind == "unit_test":
         session = svc.start_unit_test(db, user, body.skill_id)
     else:

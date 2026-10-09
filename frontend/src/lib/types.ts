@@ -153,7 +153,16 @@ export type Exercise = {
       id: number;
       type: "multiple_choice";
       prompt: string;
-      data: { choices: Choice[]; variant: "image" | "text"; sentence?: string; new_word?: boolean; character?: string };
+      data: {
+        choices: Choice[];
+        /** "audio": "Select what you hear" (Sounds lesson), the word to play is `audio_text`. */
+        variant: "image" | "text" | "audio";
+        sentence?: string;
+        new_word?: boolean;
+        character?: string;
+        audio_text?: string;
+        sound?: string;
+      };
     }
   | {
       id: number;
@@ -189,7 +198,7 @@ export type Exercise = {
 
 export type Answer = Record<string, unknown>;
 
-export type SessionKind = "lesson" | "practice" | "legendary" | "unit_test";
+export type SessionKind = "lesson" | "practice" | "legendary" | "unit_test" | "sounds";
 
 export interface LessonSession {
   id: number;

@@ -161,7 +161,7 @@ class Guidebook(BaseModel):
 
 
 class StartSession(BaseModel):
-    kind: Literal["lesson", "practice", "legendary", "unit_test"]
+    kind: Literal["lesson", "practice", "legendary", "unit_test", "sounds"]
     skill_id: int | None = None
 
 

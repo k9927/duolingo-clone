@@ -52,7 +52,7 @@ A full-stack clone of the Duolingo web app. You can work through a winding learn
 - **Responsive layout:** 3 columns on desktop, an icon sidebar on tablet, and a top stats bar with bottom tabs on mobile
 
 ### Extra Duolingo sections
-- **Sounds:** Spanish vowels and consonants as tappable tiles. Each tile plays its example word, and START +10 XP opens a practice round.
+- **Sounds:** Spanish vowels and consonants as tappable tiles. Like Duolingo, each tile plays the sound and then its example word. START +10 XP opens a Sounds lesson (`/practice/sounds`, session kind `sounds`): eight "Select what you hear" questions where a word is played (normal or slow) and the learner picks it from three, with similar-sounding words such as *pero* / *perro* offered together. Its questions are ordinary graded exercises kept in a hidden course (`seed/sounds.py`) that isn't listed or shown on the path
 - **Practice hub:** Duolingo's layout: a "Today's Review" Target Practice banner (UNLOCK, a Super feature, so it shows a coming-soon message), Conversation (Speak, Listen) and Your collections (Mistakes, which starts a practice session, and Stories), with Duolingo's artwork and SUPER badges. Practice is also reachable from the hearts menu and the out-of-hearts dialog.
 - **Sidebar MORE menu**, the "Want to learn chess?" promo and the "Try Super for free" card, matching Duolingo's layout.
 
@@ -102,7 +102,7 @@ Open http://localhost:3000.
 cd backend
 pytest
 ```
-33 tests cover streak, heart and grading rules, plus end-to-end API flows: a full lesson, mistakes, running out of hearts, practice, refill, locked skills, time travel, legendary, unit tests (jump ahead), the daily-goal gem chest, guidebook, leaderboard status, the listening-exercises preference, word hints, leaderboard and profile.
+35 tests cover streak, heart and grading rules, plus end-to-end API flows: a full lesson, mistakes, running out of hearts, practice, refill, locked skills, time travel, legendary, unit tests (jump ahead), the daily-goal gem chest, guidebook, leaderboard status, the listening-exercises preference, word hints, the Sounds lesson, leaderboard and profile.
 
 ### Trying the time-based mechanics
 **Demo tools** at `/settings/demo` (linked from Settings → Profile and the Help Center) lets you:
@@ -205,7 +205,7 @@ All endpoints are under `/api`. Errors return `{ "code": "...", "message": "..."
 | GET | `/courses` | Available courses |
 | GET | `/path` | Units → skills with state and lesson progress for the current course |
 | GET | `/units/{id}/guidebook` | Unit number, key phrases and structured grammar tips |
-| POST | `/sessions` | Start a session `{kind: lesson\|practice\|legendary\|unit_test, skill_id?}` (for `unit_test`, `skill_id` is the first skill of the unit to jump to). Returns exercises without answers, with word-hint tokens for their sentences |
+| POST | `/sessions` | Start a session `{kind: lesson\|practice\|legendary\|unit_test\|sounds, skill_id?}` (for `unit_test`, `skill_id` is the first skill of the unit to jump to). Returns exercises without answers, with word-hint tokens for their sentences |
 | POST | `/sessions/{id}/answers` | Grade an answer `{exercise_id, answer}`. Returns correctness, solution, hearts and status |
 | POST | `/sessions/{id}/complete` | Finish: awards XP, updates streak/progress/achievements and returns the results screen data |
 | POST | `/sessions/{id}/abandon` | Quit a session |
