@@ -22,6 +22,7 @@
 :root {
   --snow: #ffffff;
   --polar: #f7f7f7;
+  --popover: #ffffff;
   --swan: #e5e5e5;
   --hare: #afafaf;
   --wolf: #777777;
@@ -56,6 +57,7 @@
 .dark {
   --snow: #131f24;
   --polar: #202f36;
+  --popover: #202f36;
   --swan: #37464f;
   --hare: #52656d;
   --wolf: #dce6ec;
@@ -130,6 +132,7 @@
   /* semantic surfaces & ink */
   --color-bg: var(--snow);
   --color-surface-2: var(--polar);
+  --color-popover: var(--popover);
   --color-line: var(--swan);
   --color-ink: var(--eel);
   --color-muted: var(--wolf);

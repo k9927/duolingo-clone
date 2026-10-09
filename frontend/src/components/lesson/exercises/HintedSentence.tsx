@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { say } from "@/lib/speech";
-import type { HintedText } from "@/lib/types";
+import type { HintedText, HintToken } from "@/lib/types";
 
 /**
  * A sentence with Duolingo's word hints: every word is underlined with dashes, hovering
@@ -43,13 +43,13 @@ export function HintedSentence({
                 setOpen(open === i || !hasHints ? null : i);
               }}
               onBlur={() => setOpen(null)}
-              className={`cursor-pointer rounded-sm outline-none focus-visible:bg-surface-2 ${
+              className={`cursor-pointer rounded-md outline-none focus-visible:bg-surface-2 ${
                 hasHints ? "border-b-2 border-dashed border-line" : ""
-              }`}
+              } ${open === i ? "bg-surface-2" : ""}`}
             >
               {t.text}
             </span>
-            {open === i && <HintPopover hints={t.hints} />}
+            {open === i && <HintPopover token={t} />}
           </span>
         );
       })}
@@ -57,21 +57,24 @@ export function HintedSentence({
   );
 }
 
-function HintPopover({ hints }: { hints: string[] }) {
+function HintPopover({ token }: { token: HintToken }) {
   return (
     <span
       role="tooltip"
-      className="absolute left-1/2 top-[calc(100%+12px)] z-30 block min-w-[90px] -translate-x-1/2 rounded-xl border-2 border-line bg-bg text-center shadow-[0_2px_8px_rgba(0,0,0,0.1)]"
+      className="absolute left-1/2 top-[calc(100%+14px)] z-30 block w-max min-w-[110px] max-w-[300px] -translate-x-1/2 rounded-2xl border-2 border-line bg-popover text-center font-semibold shadow-[0_2px_8px_rgba(0,0,0,0.1)]"
     >
-      <span className="absolute -top-[9px] left-1/2 h-4 w-4 -translate-x-1/2 rotate-45 border-l-2 border-t-2 border-line bg-bg" />
-      {hints.map((h, j) => (
-        <span
-          key={h}
-          className={`relative block whitespace-nowrap px-4 py-2 text-[17px] font-semibold text-ink ${j > 0 ? "border-t-2 border-line" : ""}`}
-        >
+      <span className="absolute -top-[9px] left-1/2 h-4 w-4 -translate-x-1/2 rotate-45 rounded-tl-[3px] border-l-2 border-t-2 border-line bg-popover" />
+      {token.hints!.map((h, j) => (
+        <span key={h} className={`relative block whitespace-nowrap px-5 py-3 text-[17px] text-ink ${j > 0 ? "border-t-2 border-line" : ""}`}>
           {h}
         </span>
       ))}
+      {token.example && (
+        <span className="relative block border-t-2 border-line px-5 py-3 text-[17px] leading-snug">
+          <span className="block text-ink">“{token.example.text}”</span>
+          <span className="mt-1 block text-[15px] text-muted">{token.example.translation}</span>
+        </span>
+      )}
     </span>
   );
 }

@@ -250,4 +250,7 @@ def test_word_hints_group_phrases_and_attach_audio():
     assert tokens[0]["hints"][0] == "good night"
     assert "hints" not in tokens[1]
     assert tokens[2]["tts"].startswith("https://")
-    assert segment("I have a dog.", "en")[0] == {"text": "I have", "hints": ["tengo"]}
+    assert tokens[2]["example"] == {"text": "Hola, mamá.", "translation": "Hi, mom."}
+    assert segment("I have a dog.", "en")[0]["hints"] == ["tengo"]
+    # The example is left out when it is the very sentence being shown.
+    assert "example" not in segment("Tengo un perro.", "es")[2]

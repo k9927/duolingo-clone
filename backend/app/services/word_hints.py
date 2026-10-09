@@ -1,8 +1,9 @@
 """Splits exercise sentences into tokens with hover hints, like Duolingo's word hints.
 
 A sentence becomes a list of tokens covering the whole text: words or phrases carry
-their meanings (and Duolingo's recorded audio when the seed has one), while spaces and
-punctuation are plain tokens, so the client can render the sentence exactly as written.
+their meaning in the lesson, an example sentence showing the word in use (and Duolingo's
+recorded audio when the seed has one), while spaces and punctuation are plain tokens, so
+the client can render the sentence exactly as written.
 """
 
 import re
@@ -32,7 +33,13 @@ def segment(text: str, lang: str) -> list[dict]:
         start, end = group[0].start(), group[-1].end()
         if start > pos:
             tokens.append({"text": text[pos:start]})
-        token: dict = {"text": text[start:end], "hints": hints.get(key, [])}
+        token: dict = {"text": text[start:end], "hints": []}
+        if key in hints:
+            meanings, example, translation = hints[key]
+            token["hints"] = meanings
+            # An example identical to the sentence being shown would teach nothing new.
+            if example.strip("¿?¡!. ").lower() != text.strip("¿?¡!. ").lower():
+                token["example"] = {"text": example, "translation": translation}
         art = WORD_ART.get(key) if lang == "es" else None
         if art:
             token["tts"] = art["tts"]

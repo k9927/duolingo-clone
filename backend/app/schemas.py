@@ -165,10 +165,17 @@ class StartSession(BaseModel):
     skill_id: int | None = None
 
 
+class HintExample(BaseModel):
+    text: str
+    translation: str
+
+
 class HintToken(BaseModel):
     text: str
     # None for spaces and punctuation; a word without known meanings gets [].
     hints: list[str] | None = None
+    # A sentence showing how the word is used, like Duolingo's hint popovers.
+    example: HintExample | None = None
     tts: str | None = None
 
 

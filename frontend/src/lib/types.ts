@@ -135,6 +135,8 @@ export interface Choice {
 export interface HintToken {
   text: string;
   hints?: string[] | null;
+  /** A sentence showing how the word is used, with its translation. */
+  example?: { text: string; translation: string } | null;
   tts?: string | null;
 }
 
