@@ -49,14 +49,23 @@ export function say(text: string, audioUrl?: string | null, lang = "es", slow = 
 }
 
 export function speak(text: string, lang = "es", slow = false) {
+  speakSequence([text], lang, slow);
+}
+
+/** Speaks several phrases one after another (e.g. a sound, then a word that uses it). */
+export function speakSequence(texts: string[], lang = "es", slow = false) {
   const s = synth();
-  if (!s || !text) return;
+  const parts = texts.filter(Boolean);
+  if (!s || !parts.length) return;
   stopSpeech();
-  const utterance = new SpeechSynthesisUtterance(text);
   const locale = LOCALES[lang] ?? lang;
-  utterance.lang = locale;
-  utterance.rate = slow ? 0.55 : 0.95;
   const voice = pickVoice(locale);
-  if (voice) utterance.voice = voice;
-  s.speak(utterance);
+  // The browser queues utterances, so each one starts when the previous one ends.
+  for (const text of parts) {
+    const utterance = new SpeechSynthesisUtterance(text);
+    utterance.lang = locale;
+    utterance.rate = slow ? 0.55 : 0.95;
+    if (voice) utterance.voice = voice;
+    s.speak(utterance);
+  }
 }
