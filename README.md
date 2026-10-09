@@ -242,15 +242,34 @@ Error codes used by the UI include `out_of_hearts`, `skill_locked`, `session_inc
 
 ## Deployment
 
-**Backend → Render**
-1. Push the repo to GitHub and create a Render *Blueprint* from `render.yaml`, or create a Python web service with root `backend/`, build `pip install -r requirements.txt` and start `uvicorn app.main:app --host 0.0.0.0 --port $PORT`.
-2. Set `CORS_ORIGINS` to your Vercel URL. `*.vercel.app` previews are already allowed by `CORS_ORIGIN_REGEX`.
-3. The free tier has an ephemeral disk, so the SQLite file is re-seeded on each restart. That suits a demo. For durable progress, attach a Render disk and point `DATABASE_URL` at it, for example `sqlite:////var/data/duolingo.db`.
+The live demo runs the frontend on **Vercel** and the API on **PythonAnywhere**. Both have free plans that need no card, and PythonAnywhere keeps the SQLite file on a persistent disk, so progress survives restarts.
+
+**Backend → PythonAnywhere** (free "Beginner" account)
+1. In a **Bash console**:
+   ```bash
+   git clone https://github.com/k9927/duolingo-clone.git
+   mkvirtualenv --python=python3.12 duo
+   pip install -r duolingo-clone/backend/requirements.txt
+   ```
+2. **Web** tab → *Add a new web app* → *Manual configuration* → *Python 3.12*.
+3. Set **Virtualenv** to `/home/<username>/.virtualenvs/duo`.
+4. Open the **WSGI configuration file** and replace its contents with:
+   ```python
+   import sys
+   sys.path.insert(0, "/home/<username>/duolingo-clone/backend")
+   from wsgi import application  # noqa: E402
+   ```
+   `backend/wsgi.py` wraps the FastAPI (ASGI) app with `a2wsgi`, because the free plan serves WSGI apps, and creates and seeds the database on first start.
+5. Click **Reload**. The API is live at `https://<username>.pythonanywhere.com` (the root redirects to `/docs`). To update later: `git pull` in the console, then **Reload**.
+
+`*.vercel.app` origins are allowed by `CORS_ORIGIN_REGEX`; add any other frontend origin to `CORS_ORIGINS`.
 
 **Frontend → Vercel**
-1. Import the repo and set the project root to `frontend/`.
-2. Add the environment variable `NEXT_PUBLIC_API_URL=https://<your-render-service>.onrender.com`.
+1. Import the GitHub repo and set the **Root Directory** to `frontend`.
+2. Add the environment variable `NEXT_PUBLIC_API_URL=https://<username>.pythonanywhere.com`.
 3. Deploy.
+
+**Other hosts.** `render.yaml` (Render, uvicorn) and `backend/Dockerfile` (any Docker host, including Hugging Face Spaces) are included as alternatives. Those platforms' free tiers have ephemeral disks, so the database is re-seeded on each restart; point `DATABASE_URL` at a mounted volume to keep progress.
 
 ---
 

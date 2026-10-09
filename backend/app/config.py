@@ -1,12 +1,18 @@
 """Application settings, overridable through environment variables or a .env file."""
 
+from pathlib import Path
+
 from pydantic_settings import BaseSettings, SettingsConfigDict
+
+# backend/ — the default database lives here whatever folder the server is started from
+# (hosts such as PythonAnywhere don't start the app inside the project).
+BACKEND_DIR = Path(__file__).resolve().parent.parent
 
 
 class Settings(BaseSettings):
     model_config = SettingsConfigDict(env_file=".env", extra="ignore")
 
-    database_url: str = "sqlite:///./duolingo.db"
+    database_url: str = f"sqlite:///{(BACKEND_DIR / 'duolingo.db').as_posix()}"
     # Comma-separated list of allowed frontend origins.
     cors_origins: str = "http://localhost:3000,http://127.0.0.1:3000"
     # Optional regex (e.g. for Vercel preview deployments).
