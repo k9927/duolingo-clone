@@ -252,8 +252,10 @@ function XpPanel({ me, close }: { me: Me; close: () => void }) {
     <div className="flex items-center gap-6 p-6">
       <DuoImg src={DUO.profile.xp} width={66} height={90} />
       <div className="min-w-0 flex-1">
-        <p className="text-2xl font-extrabold">{me.total_xp} XP</p>
-        <p className="mt-2 text-[17px] font-semibold">
+        <p className="text-2xl font-extrabold">{me.total_xp} total XP</p>
+        {/* The top bar shows all-time XP; leagues rank only this week's XP, as on Duolingo. */}
+        <p className="mt-1 text-[15px] font-semibold text-muted">Leaderboards count the XP you earn this week.</p>
+        <p className="mt-3 text-[17px] font-semibold">
           {me.xp_today >= goal ? "Daily goal reached!" : `${me.xp_today} of ${goal} XP earned today`}
         </p>
         <ProgressBar value={me.xp_today / goal} color="var(--bee)" height={14} className="mt-3" />
