@@ -108,15 +108,20 @@ function UnitNodes({ unit, unitIndex, direction, selected, onSelect, activeRef }
   // Unit 1 is never locked, so the locked artwork starts at Unit 2.
   const lockedIndex = Math.max(0, unitIndex - 1) % DUO.lockedCharacters.dark.length;
   const lockedCharacter = { light: DUO.lockedCharacters.light[lockedIndex], dark: DUO.lockedCharacters.dark[lockedIndex] };
+  // As on Duolingo, the first unit's path starts just below the pinned banner; later
+  // units start below their divider. A current first node needs room for its START bubble.
+  const topPadding = unitIndex === 0 ? 22 : 84;
+  const startHeadroom = unitIndex === 0 ? 62 : 0;
   let row = 0;
   // Margin that shifts a centred flex item by `offset` px.
   const shift = () => ({ marginLeft: OFFSETS[row++ % OFFSETS.length] * direction * 2 });
 
   return (
-    <div className="relative flex flex-col items-center gap-6 overflow-x-clip pb-4 pt-[84px]">
+    <div className="relative flex flex-col items-center gap-6 overflow-x-clip pb-4" style={{ paddingTop: topPadding }}>
       {/* Mascot standing on its platform beside the path; greyed out until the unit is reached. */}
       <div
-        className={`pointer-events-none absolute top-[162px] flex flex-col items-center ${
+        style={{ top: topPadding + 78 }}
+        className={`pointer-events-none absolute flex flex-col items-center ${
           direction === 1 ? "left-[calc(50%-18px)]" : "right-[calc(50%-18px)]"
         }`}
       >
@@ -144,7 +149,7 @@ function UnitNodes({ unit, unitIndex, direction, selected, onSelect, activeRef }
             </div>
           ) : (
           /* The current node gets headroom for its START bubble. */
-          <div data-path-node className="relative" style={{ ...shift(), marginTop: skill.state === "active" && i > 0 ? 36 : 0 }}>
+          <div data-path-node className="relative" style={{ ...shift(), marginTop: skill.state === "active" ? (i > 0 ? 36 : startHeadroom) : 0 }}>
             <PathNode
               ref={skill.state === "active" ? activeRef : undefined}
               skill={skill}
