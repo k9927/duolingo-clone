@@ -124,7 +124,7 @@ export function Sidebar() {
               key={item.href}
               href={item.href}
               title={item.label}
-              className={`flex h-[52px] items-center justify-center gap-5 rounded-xl border-2 px-3 text-[15px] font-extrabold uppercase leading-[25px] tracking-[0.8px] transition-colors lg:justify-start lg:px-4 ${
+              className={`flex h-[52px] items-center justify-center gap-5 rounded-xl border-2 px-3 text-[15px] font-extrabold uppercase tracking-wide transition-colors lg:justify-start lg:px-4 ${
                 active ? "border-sel-line bg-sel text-macaw" : "border-transparent text-muted hover:bg-surface-2"
               }`}
             >

@@ -22,19 +22,18 @@ export function QuestIcon({ kind, size = 60 }: { kind: Quest["kind"]; size?: num
   return <DuoImg src={QUEST_ICONS[kind]} width={size} height={size} alt="" />;
 }
 
-/** `large` is the Quests page size (19px title); the side panel uses 17px, as on Duolingo. */
-export function QuestRow({ quest, large = false }: { quest: Quest; large?: boolean }) {
+export function QuestRow({ quest }: { quest: Quest }) {
   const done = quest.value >= quest.goal;
   return (
     <div className="flex items-center gap-4">
       <QuestIcon kind={quest.kind} />
       <div className="flex-1">
-        <p className={`mb-3 font-bold ${large ? "text-[19px] leading-[26px]" : "text-[17px] leading-6"}`}>{quest.title}</p>
+        <p className="mb-3 text-[19px] font-bold">{quest.title}</p>
         <div className="flex items-center">
           <div className="relative flex-1">
             <ProgressBar value={quest.value / quest.goal} color="var(--bee)" height={20} />
             <span
-              className={`absolute inset-0 flex items-center justify-center text-sm font-bold tracking-[0.56px] ${quest.value > 0 ? "text-[#cd7900]" : "text-muted"}`}
+              className={`absolute inset-0 flex items-center justify-center text-sm font-bold ${quest.value > 0 ? "text-[#cd7900]" : "text-muted"}`}
             >
               {Math.min(quest.value, quest.goal)} / {quest.goal}
             </span>
@@ -64,14 +63,14 @@ function LeagueCard() {
   return (
     <section className="rounded-2xl border-2 border-line p-5">
       <div className="mb-4 flex items-center justify-between">
-        <h3 className="text-[19px] font-extrabold leading-7">Bronze League</h3>
-        <Link href="/leaderboard" className="text-[15px] font-extrabold uppercase tracking-[0.8px] text-macaw hover:brightness-110">
+        <h3 className="text-xl font-extrabold">Bronze League</h3>
+        <Link href="/leaderboard" className="text-sm font-extrabold uppercase text-macaw hover:brightness-110">
           View league
         </Link>
       </div>
       <div className="flex items-center gap-4">
         <DuoImg src={DUO.leagues.bronze} width={48} height={54} alt="Bronze League" />
-        <p className="text-[17px] font-semibold text-muted">
+        <p className="font-semibold text-muted">
           {standing ? (
             <>
               You&apos;re ranked <span className="font-extrabold text-ink">#{standing.rank}</span>.{" "}
@@ -92,8 +91,8 @@ function QuestsCard() {
   return (
     <section className="rounded-2xl border-2 border-line p-5">
       <div className="mb-5 flex items-center justify-between">
-        <h3 className="text-[19px] font-extrabold leading-7">Daily Quests</h3>
-        <Link href="/quests" className="text-[15px] font-extrabold uppercase tracking-[0.8px] text-macaw hover:brightness-110">
+        <h3 className="text-xl font-extrabold">Daily Quests</h3>
+        <Link href="/quests" className="text-sm font-extrabold uppercase text-macaw hover:brightness-110">
           View all
         </Link>
       </div>
@@ -176,7 +175,7 @@ export function RightPanel() {
           <QuestsCard />
         </>
       )}
-      <footer className="flex flex-wrap justify-center gap-x-4 gap-y-4 px-4 text-[13px] font-bold uppercase leading-4 text-faint">
+      <footer className="flex flex-wrap justify-center gap-x-4 gap-y-2 px-4 text-[13px] font-bold uppercase text-faint">
         {FOOTER_LINKS.map((label) => (
           <span key={label} className="cursor-default">
             {label}

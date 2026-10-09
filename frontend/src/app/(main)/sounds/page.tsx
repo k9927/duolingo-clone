@@ -51,14 +51,13 @@ const CONSONANTS: Sound[] = [
 
 function SoundGrid({ title, items, heard, onPlay }: { title: string; items: Sound[]; heard: Set<string>; onPlay: (sound: Sound) => void }) {
   return (
-    <section className="mb-[18px]">
-      {/* Sizes measured from duolingo.com: short divider lines, a 502px grid of 65px tiles. */}
-      <div className="mb-[22px] flex items-center justify-center gap-2.5">
-        <div className="h-0.5 w-[178px] shrink bg-line" />
-        <h2 className="text-xl font-extrabold">{title}</h2>
-        <div className="h-0.5 w-[178px] shrink bg-line" />
+    <section className="mb-10">
+      <div className="mb-6 flex items-center gap-4">
+        <div className="h-0.5 flex-1 bg-line" />
+        <h2 className="text-[19px] font-extrabold">{title}</h2>
+        <div className="h-0.5 flex-1 bg-line" />
       </div>
-      <div className="mx-auto grid max-w-[502px] grid-cols-3 gap-2.5">
+      <div className="mx-auto grid max-w-[592px] grid-cols-3 gap-2.5">
         {items.map((sound) => {
           const [symbol, word] = sound;
           const done = heard.has(symbol);
@@ -66,11 +65,11 @@ function SoundGrid({ title, items, heard, onPlay }: { title: string; items: Soun
             <button
               key={symbol}
               onClick={() => onPlay(sound)}
-              className="tile flex h-[65px] flex-col items-center justify-center rounded-2xl bg-bg hover:bg-surface-2"
+              className="tile flex h-[78px] flex-col items-center justify-center rounded-2xl bg-bg hover:bg-surface-2"
             >
               <span className="text-[17px] font-extrabold leading-tight">{symbol}</span>
-              <span className="text-base font-semibold leading-5 text-faint">{word}</span>
-              <span className="mt-1 h-2 w-12 overflow-hidden rounded-full bg-line">
+              <span className="text-[15px] font-semibold text-faint">{word}</span>
+              <span className="mt-1.5 h-2 w-12 overflow-hidden rounded-full bg-line">
                 <span className={`block h-full rounded-full bg-bee transition-all ${done ? "w-full" : "w-0"}`} />
               </span>
             </button>
@@ -91,11 +90,11 @@ export default function SoundsPage() {
   };
 
   return (
-    <div className="px-4 pt-6 min-[1100px]:!px-0 min-[1100px]:pt-[49px]">
-      <div className="mb-12 flex flex-col items-center text-center">
-        <h1 className="text-[32px] font-extrabold leading-tight">Let’s learn Spanish sounds!</h1>
-        <p className="mt-[13px] text-[19px] font-semibold">Train your ear and learn to pronounce Spanish sounds</p>
-        <Button variant="secondary" href="/practice/sounds" className="mt-[19px] w-full max-w-[333px]">
+    <div className="px-4 pt-6 min-[1100px]:!px-0 min-[1100px]:pt-10">
+      <div className="mb-10 flex flex-col items-center text-center">
+        <h1 className="text-[32px] font-extrabold leading-tight">Let&apos;s learn Spanish sounds!</h1>
+        <p className="mt-4 text-[19px] font-semibold">Train your ear and learn to pronounce Spanish sounds</p>
+        <Button variant="secondary" size="lg" href="/practice/sounds" className="mt-8 w-full max-w-[390px]">
           Start +10 XP
         </Button>
       </div>
