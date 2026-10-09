@@ -12,7 +12,7 @@ export function UnitBanner({ unit }: { unit: UnitData }) {
       style={{ background: unit.color, color: "#fff" }}
     >
       <div className="min-w-0 self-center p-4 sm:p-0">
-        <p className="flex items-center gap-2 text-[15px] font-extrabold uppercase tracking-[0.3px] text-white/80 sm:text-base">
+        <p className="flex items-center gap-2 text-[15px] font-extrabold uppercase text-white/80 sm:text-base">
           <span className="hidden sm:inline-flex">
             <DuoImg src={DUO.path.sectionArrow} width={16} />
           </span>

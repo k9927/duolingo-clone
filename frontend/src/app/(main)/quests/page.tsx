@@ -30,8 +30,8 @@ export default function QuestsPage() {
       {/* Signed-in learners get Duolingo's "Welcome Back!" banner. */}
       <div className="relative mb-6 flex min-h-[252px] items-center overflow-hidden rounded-2xl bg-[#CE82FF] p-6 text-[#131f24]">
         <div className="relative z-10 max-w-[55%]">
-          <h1 className="text-2xl font-bold">Welcome Back!</h1>
-          <p className="mt-4 text-[17px] font-medium">Complete quests to earn rewards!</p>
+          <h1 className="text-[25px] font-bold leading-[34px]">Welcome Back!</h1>
+          <p className="mt-2 text-[17px] font-medium leading-6">Complete quests to earn rewards!</p>
         </div>
         <div className="absolute bottom-0 right-0 hidden sm:block">
           <DuoImg src={DUO.questsWelcomeBack} width={278} height={224} />
@@ -39,7 +39,7 @@ export default function QuestsPage() {
       </div>
 
       <div className="mb-4 flex items-center justify-between">
-        <h2 className="text-[25px] font-extrabold">Daily Quests</h2>
+        <h2 className="text-[25px] font-extrabold leading-7">Daily Quests</h2>
         <span className="flex items-center gap-1.5 text-[17px] font-extrabold uppercase text-fox">
           <TimerIcon size={20} />
           {hoursLeft(midnight.getTime() - serverNow.getTime())}
@@ -48,13 +48,13 @@ export default function QuestsPage() {
       <div className="divide-y-2 divide-line rounded-2xl border-2 border-line">
         {dailyQuests(me).map((q) => (
           <div key={q.id} className="p-[18px]">
-            <QuestRow quest={q} />
+            <QuestRow quest={q} large />
           </div>
         ))}
       </div>
       <div className="mt-4 flex items-center gap-8 rounded-2xl border-2 border-line bg-surface-2 px-8 py-6">
         <DuoImg src={DUO.questLocked} width={44} height={44} />
-        <p className="text-[19px] font-bold text-faint">More quests unlock soon</p>
+        <p className="text-[19px] font-bold leading-7 text-faint">More quests unlock soon</p>
       </div>
     </div>
   );

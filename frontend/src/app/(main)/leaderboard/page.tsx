@@ -33,7 +33,7 @@ export default function LeaderboardPage() {
             <DuoImg key={i} src={DUO.leagues.locked} width={54} height={60} alt="Locked league" />
           ))}
         </div>
-        <h1 className="text-2xl font-bold">{board.league} League</h1>
+        <h1 className="text-[25px] font-bold">{board.league} League</h1>
         <p className="mt-3 text-[17px] font-medium">Top {board.promotion_spots} advance to the next league</p>
         <p className="mt-1 text-[15px] font-bold text-bee">
           {daysLeft} day{daysLeft === 1 ? "" : "s"}

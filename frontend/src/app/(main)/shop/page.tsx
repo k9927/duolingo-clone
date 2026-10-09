@@ -73,7 +73,7 @@ export default function ShopPage() {
     <div className="px-4 pt-6 min-[1100px]:!px-0">
       <SuperBanner onStart={superSoon} />
 
-      <h2 className="mb-6 mt-10 text-2xl font-bold">Hearts</h2>
+      <h2 className="mb-6 mt-10 text-2xl font-bold leading-[26px]">Hearts</h2>
       <ul>
         {refill && <ShopRow icon={ICONS.heart} title={refill.title} description={refill.description} action={action(refill)} />}
         <ShopRow
@@ -88,7 +88,7 @@ export default function ShopPage() {
         />
       </ul>
 
-      <h2 className="mb-6 mt-10 text-2xl font-bold">Power-Ups</h2>
+      <h2 className="mb-6 mt-10 text-2xl font-bold leading-[26px]">Power-Ups</h2>
       <ul>
         {freeze && (
           <ShopRow
@@ -120,16 +120,19 @@ function ShopRow({
   return (
     <li className="flex items-start gap-[10px] border-t-2 border-line py-5">
       <div className="flex h-[100px] w-[100px] shrink-0 items-center justify-center">{icon}</div>
+      {/* As on Duolingo, the button sits beside the title and the description runs full width beneath. */}
       <div className="min-w-0 flex-1">
-        <div className="flex flex-wrap items-center gap-x-5 gap-y-1 py-2">
-          <span className="text-[19px] font-bold">{title}</span>
-          {badge && (
-            <span className="rounded-2xl bg-surface-2 p-2 text-[15px] font-bold uppercase leading-none text-feather">{badge}</span>
-          )}
+        <div className="flex items-start gap-4">
+          <div className="flex min-w-0 flex-1 flex-wrap items-center gap-x-5 gap-y-1 py-2">
+            <span className="text-[19px] font-bold leading-5">{title}</span>
+            {badge && (
+              <span className="rounded-2xl bg-surface-2 p-2 text-[15px] font-bold uppercase leading-none text-feather">{badge}</span>
+            )}
+          </div>
+          <div className="w-[158px] shrink-0">{action}</div>
         </div>
         <p className="text-[17px] font-medium leading-[30px] text-muted">{description}</p>
       </div>
-      <div className="mt-1 w-[160px] shrink-0">{action}</div>
     </li>
   );
 }
